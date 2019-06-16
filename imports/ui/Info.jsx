@@ -2,31 +2,40 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import Links from '../api/links';
 
-class Info extends Component {
-  render() {
-    const links = this.props.links.map(
-      link => this.makeLink(link)
-    );
+class Form extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: '', change: ''};
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
+  }
+
+  handleChange(event){
+    this.setState({change: event.target.value});
+    event.preventDefault();
+  }
+
+  handleSubmit(event) {
+    this.setState({value: this.state.change});
+    event.preventDefault();
+  }
+
+  render() {
     return (
       <div>
-        <h2>Learn Meteor!</h2>
-        <ul>{ links }</ul>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.change} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+        <p> You have entered {this.state.value} </p>
       </div>
+      
     );
-  }
 
-  makeLink(link) {
-    return (
-      <li key={link._id}>
-        <a href={link.url} target="_blank">{link.title}</a>
-      </li>
-    );
   }
 }
-
-export default InfoContainer = withTracker(() => {
-  return {
-    links: Links.find().fetch(),
-  };
-})(Info);
+export default Form; 
