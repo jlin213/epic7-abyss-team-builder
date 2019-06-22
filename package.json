@@ -14,6 +14,7 @@
     "apollo-client": "^2.6.3",
     "apollo-link": "^1.2.12",
     "apollo-link-ddp": "^2.1.0",
+
     "apollo-server": "^2.6.3",
     "apollo-server-express": "^2.6.3",
     "body-parser": "^1.19.0",
@@ -30,6 +31,7 @@
     "react-dom": "^16.8.6",
     "react-mounter": "^1.2.0",
     "sass": "^1.21.0"
+
   },
   "meteor": {
     "mainModule": {
