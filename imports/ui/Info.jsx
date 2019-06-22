@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import Links from '../api/links';
 
 class Form extends Component {
   constructor(props) {
