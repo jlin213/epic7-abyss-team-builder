@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
-class FloorSelector extends Component{
+export default class FloorSelector extends Component{
+
 	constructor(props){
 		super(props);
 		this.state = {value: "", change: ""}; 
 		this.handleSubmit = this.handleSubmit.bind(this);
     	this.handleChange = this.handleChange.bind(this);
 	}
+
+
 
 	handleChange(event){
 	    this.setState({change: event.target.value});
@@ -18,6 +21,7 @@ class FloorSelector extends Component{
 	    event.preventDefault();
 	}
 
+	//generate the array of floors based on input 
 	generateArray(){
 		if (this.state.value == ''){
 			return;
@@ -37,10 +41,11 @@ class FloorSelector extends Component{
 				<form onSubmit={this.handleSubmit}>
 			        <label>
 			        What is your maximum floor:
-			          <input type="text" value={this.state.change} onChange={this.handleChange} />
+			        <input type="text" value={this.state.change} onChange={this.handleChange} />
 			        </label>
 			        <input type="submit" value="Submit" />
 			    </form>
+			    //render selection of floors 
 			    <select className="custom-select" id="inputGroupSelect01">
 				    <option>Choose...</option>
 				    {this.generateArray()}
@@ -51,4 +56,3 @@ class FloorSelector extends Component{
 	}
 }
 
-export default FloorSelector;
