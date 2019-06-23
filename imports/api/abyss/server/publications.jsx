@@ -1,11 +1,11 @@
 import { Meteor } from 'meteor/meteor';
-import { heroDB } from '../heroDB.jsx';
+import { abyssDB } from '../abyssDB.jsx';
 
 
 if (Meteor.isServer) {
 	// This code only runs on the server 
 	
-	Meteor.publish('heroes.all', function() {
-		return heroDB.find();
+	Meteor.publish('abyss.all', function() {
+		return abyssDB.find();
 	});
 }
