@@ -11,7 +11,7 @@ Meteor.methods ({
 		check(level, Number);
 
 		abyssDB.insert({
-			name: name,
+			level: level,
 			teams: [],
 		});
 	},

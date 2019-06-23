@@ -44,7 +44,7 @@ class FlexBoxes extends Component{
 				return <div className="border p-1 w-10 box" value = {num} key ={num+1}  onClick={this.handleClick.bind(this, num, num)}>
 						<img src = {this.generateURL(num)} className = {clicked} value = {num}/>
 				</div>
-			 	}
+				}
 			);
 		return listItems;
 	}
@@ -58,10 +58,10 @@ class FlexBoxes extends Component{
 }
 
 export default withTracker(() => {
-  	Meteor.subscribe('heroes.all');
+	Meteor.subscribe('heroes.all');
  
-  	return {
-    	heroes: heroDB.find({}).fetch(),
+	return {
+		heroes: heroDB.find({}).fetch(),
 		}
 	}	
 )(FlexBoxes);

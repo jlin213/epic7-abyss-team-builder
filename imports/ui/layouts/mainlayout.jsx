@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 
-export const MainLayout = ({loginbutton, leftContent1, leftContent2}) => (
-	<main>
+export const MainLayout = ({title, loginbutton, leftContent}) => (
+	<main className="w-100 h-100">
 		<nav className="navbar navbar-light bg-light">
 		{loginbutton}
-		</nav>
-		<div className="container-fluid d-flex h-100">
-			<div className="row justify-content-center align-self-center font margin">
- 				Abyss Team Builder
+			<div className="justify-content-center align-self-center m-1">
+ 				<h4>Abyss Team Builder {title}</h4>
 			</div>
-		</div>
-		<div className = "container-fluid justify-content: space-between">
-			<div className = "row w-30 align-items-start justify-content-start margin">
-		        {leftContent1}
-		        {leftContent2}
+		</nav>
+		<div className="d-flex w-100 h-100">
+			<div className="w-40 h-100 p-3">
+		        <div className="card front-page-cards">
+		        	{leftContent}
+		        </div>
+        	</div>
+        	<div className="w-60 h-100 p-3">
+        		<div className="card front-page-cards">
+        		</div>
         	</div>
         </div>	
      </main>

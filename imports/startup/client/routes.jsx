@@ -12,22 +12,21 @@ import AddHero 							from "../../ui/components/admin/AddHero.jsx";
 FlowRouter.route("/admin", {
 	action: function(params){
 		mount(MainLayout, {
-			leftContent1: <AdminButtons />,
+			title: 'Admin ',
+			leftContent: <AdminButtons />,
 			loginbutton: <AccountsUIWrapper/>,
 		});
 	}
 })
 
 // /home
-import FloorSelector 					from '../../ui/components/mainApp/FloorSelector.jsx';
 import FlexBoxes 						from '../../ui/components/mainApp/Flexboxes.jsx';
 FlowRouter.route('*', {
 // do some action for this route
 action: function(params) {
 		mount(MainLayout, {
 			loginbutton: <AccountsUIWrapper />,
-		  	leftContent1: <FloorSelector />,
-		  	leftContent2: <FlexBoxes />,
+		  	leftContent: <FlexBoxes />,
 		});
 	}
 });
