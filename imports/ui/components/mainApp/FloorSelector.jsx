@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 
 export default class FloorSelector extends Component{
-
 	constructor(props){
 		super(props);
 		this.state = {value: "", change: ""}; 
 		this.handleSubmit = this.handleSubmit.bind(this);
     	this.handleChange = this.handleChange.bind(this);
 	}
-
-
 
 	handleChange(event){
 	    this.setState({change: event.target.value});
@@ -20,7 +17,6 @@ export default class FloorSelector extends Component{
 	    this.setState({value: this.state.change});
 	    event.preventDefault();
 	}
-
 	//generate the array of floors based on input 
 	generateArray(){
 		if (this.state.value == ''){
@@ -32,7 +28,6 @@ export default class FloorSelector extends Component{
 			);
 			return listItems;
 		}
-
 	}
 
 	render(){

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 export default class Admin extends Component{
 	constructor(props){
 		super(props);
@@ -13,12 +12,10 @@ export default class Admin extends Component{
 	    this.setState({change: event.target.value});
 
 	}
-
 	handleSubmit(event) {
 		event.preventDefault();
 	    this.setState({value: this.state.change}, function(){
 	    	Meteor.call('Hero.add', this.state.value , 5, "Water"); 
-
 	    });
 	}
 	render(){
@@ -31,10 +28,7 @@ export default class Admin extends Component{
 			        </label>
 			        <input type="submit" value="Submit"  />
 			</form>
-
 		</div>
 		)
 	}
-
-
 }

@@ -10,8 +10,7 @@ class FlexBoxes extends Component{
 		}; 
 		this.handleClick = this.handleClick.bind(this);
 	}
-
-	//will be modified when there is a database
+	//access db and get the list of heroes name for url
 	generateHeroName(){
 		const list = this.props.heroes.map((heroes) => {
 			return heroes.name.toLowerCase();
@@ -50,7 +49,6 @@ class FlexBoxes extends Component{
 			);
 		return listItems;
 	}
-
 	render(){
 		return(
 			<div className="d-flex flex-row justify-content-start">
@@ -58,8 +56,8 @@ class FlexBoxes extends Component{
 			</div>
 		);
 	}
-
 }
+
 export default withTracker(() => {
   	Meteor.subscribe('heroes.all');
  
