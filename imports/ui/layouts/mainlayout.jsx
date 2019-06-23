@@ -18,6 +18,4 @@ export const MainLayout = ({loginbutton, leftContent1, leftContent2}) => (
         	</div>
         </div>	
      </main>
-
-
 );
