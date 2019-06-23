@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Admin extends Component{
+export default class AddHero extends Component{
 	constructor(props){
 		super(props);
 		this.state = {value: "", change: "", star: 0, elementType: ""}; 
@@ -27,7 +27,7 @@ export default class Admin extends Component{
 	handleSubmit(event) {
 		event.preventDefault();
 	    this.setState({value: this.state.change}, function(){
-	    	Meteor.call('Hero.add', this.state.value , this.state.star, this.state.elementType); 
+	    	Meteor.call('hero.add', this.state.value , this.state.star, this.state.elementType); 
 	    });
 	}
 

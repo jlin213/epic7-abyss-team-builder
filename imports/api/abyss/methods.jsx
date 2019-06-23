@@ -24,5 +24,4 @@ Meteor.methods ({
 			teams: team,
 		});
 	}
-
 });
