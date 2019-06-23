@@ -15,7 +15,6 @@ class FlexBoxes extends Component{
 		const list = this.props.heroes.map((heroes) => {
 			return heroes.name.toLowerCase();
 		})
-		console.log(list);
 		return list; 
 	}
 

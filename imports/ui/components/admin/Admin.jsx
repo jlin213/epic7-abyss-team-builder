@@ -15,7 +15,7 @@ export default class Admin extends Component{
 	handleSubmit(event) {
 		event.preventDefault();
 	    this.setState({value: this.state.change}, function(){
-	    	Meteor.call('Hero.add', this.state.value , 5, "Water"); 
+	    	Meteor.call('hero.add', this.state.value , 5, "Water"); 
 	    });
 	}
 	render(){
