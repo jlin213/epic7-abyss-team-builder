@@ -5,7 +5,7 @@ import { heroDB } 								from './heroDB.jsx';
 
 
 Meteor.methods ({
-	'Hero.add'( name, natStar, element){
+	'hero.add'( name, natStar, element){
 		if (!this.userId) {	
 			// throw new Meteor.Error('insert not-authorized, Please log in first.');	
 		}
