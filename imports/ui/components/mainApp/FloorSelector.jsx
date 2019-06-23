@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import {abyssDB} from "../../../api/abyss/abyssDB.jsx";
+import { withTracker } from 'meteor/react-meteor-data';
 
-export default class FloorSelector extends Component{
+class FloorSelector extends Component{
 	constructor(props){
 		super(props);
-		this.state = {value: "", change: ""}; 
+		this.state = {value: "", change: "", previousArr: ""}; 
 		this.handleSubmit = this.handleSubmit.bind(this);
     	this.handleChange = this.handleChange.bind(this);
 	}
@@ -14,21 +16,29 @@ export default class FloorSelector extends Component{
 	}
 
   	handleSubmit(event) {
-	    this.setState({value: this.state.change});
+  		if (this.props.abyss.level < this.state.value | this.props.abyss.level == null){	    
+		    this.setState({value: this.state.change}, function(){
+		    	Meteor.call('abyss.add', this.state.value)
+		    });
+		}
 	    event.preventDefault();
 	}
 	//generate the array of floors based on input 
 	generateArray(){
 		if (this.state.value == ''){
 			return;
-		}else{		    
+		}else if (this.props.abyss.level < this.state.value){	    
 			const num = Array.from(Array(parseInt(this.state.value)).keys());
 			const listItems = num.map((num) => 
 				<option key={num +1} >Floor {num+1}</option>
 			);
+			this.setState({previousArr: listItems});
 			return listItems;
 		}
-	}
+		else{
+			return this.state.previousArr;
+		}
+	}		
 
 	render(){
 		return(
@@ -49,4 +59,12 @@ export default class FloorSelector extends Component{
 		);
 	}
 }
+
+export default withTracker(() => {
+  	Meteor.subscribe('abyss.all');
+  	return {
+    	abyss: abyssDB.find({}).fetch(),
+		}
+	}	
+)(FloorSelector);
 
