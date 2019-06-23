@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import update from "immutability-helper";
+import {heroDB} from "../../../api/heroes/heroDB.jsx";
+import { withTracker } from 'meteor/react-meteor-data';
 
-export default class FlexBoxes extends Component{
+class FlexBoxes extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
@@ -12,7 +13,11 @@ export default class FlexBoxes extends Component{
 
 	//will be modified when there is a database
 	generateHeroName(){
-		return ["bellona", "luna"]; 
+		const list = this.props.heroes.map((heroes) => {
+			return heroes.name.toLowerCase();
+		})
+		console.log(list);
+		return list; 
 	}
 
 	//generate the url for API call 
@@ -35,7 +40,7 @@ export default class FlexBoxes extends Component{
 
 	//this render the hero icon based on the list of hero names/url with API call
 	renderHeroIcon(){ 
-		const num = Array.from(Array(parseInt(2)).keys());
+		const num = Array.from(Array(parseInt(this.props.heroes.length)).keys());
 		const listItems = num.map((num) => {
 				var clicked = this.state.click.includes(num) ? "" : "grayscale"; 
 				return <div className="border p-1 w-10 box" value = {num} key ={num+1}  onClick={this.handleClick.bind(this, num, num)}>
@@ -45,7 +50,7 @@ export default class FlexBoxes extends Component{
 			);
 		return listItems;
 	}
-		
+
 	render(){
 		return(
 			<div className="d-flex flex-row justify-content-start">
@@ -55,3 +60,13 @@ export default class FlexBoxes extends Component{
 	}
 
 }
+export default withTracker(() => {
+  	Meteor.subscribe('heroes.all');
+ 
+  	return {
+    	heroes: heroDB.find({}).fetch(),
+		}
+	}	
+)(FlexBoxes);
+
+

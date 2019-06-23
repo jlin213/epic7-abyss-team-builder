@@ -45,7 +45,6 @@ export default class FloorSelector extends Component{
 			        </label>
 			        <input type="submit" value="Submit" />
 			    </form>
-			    //render selection of floors 
 			    <select className="custom-select" id="inputGroupSelect01">
 				    <option>Choose...</option>
 				    {this.generateArray()}
