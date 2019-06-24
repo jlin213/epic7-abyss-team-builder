@@ -8,27 +8,24 @@ import AccountsUIWrapper 				from '../../ui/components/AccountsUIWrapper.js';
 
 // /admin
 import AdminButtons 					from '../../ui/components/admin/AdminButtons.jsx';
-import AddHero 							from "../../ui/components/admin/AddHero.jsx";
 FlowRouter.route("/admin", {
 	action: function(params){
 		mount(MainLayout, {
 			title: 'Admin ',
-			leftContent1: <AdminButtons />,
+			content: <AdminButtons />,
 			loginbutton: <AccountsUIWrapper/>,
 		});
 	}
 })
 
 // /home
-import FlexBoxes 						from '../../ui/components/mainApp/Flexboxes.jsx';
-import AbyssDat 						from '../../ui/components/mainApp/AbyssDat/AbyssDat.jsx';
+import AbyssDat 						from '../../ui/components/mainApp/AbyssDat.jsx';
 FlowRouter.route('/', {
 // do some action for this route
 action: function(params) {
 		mount(MainLayout, {
 			loginbutton: <AccountsUIWrapper />,
-		  	leftContent2: <FlexBoxes />,
-		  	rightContent: <AbyssDat />,
+		  	content: <AbyssDat />,
 		});
 	}
 });
