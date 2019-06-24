@@ -7,9 +7,9 @@ import FloorSelector 					from "./FloorSelector.jsx";
 class AdminButtons extends Component{
 	constructor(props){
 		super(props);
-
+		
 	}
-
+	
 	renderAddHeroes(){
 		return(<AddHero />)
 	}

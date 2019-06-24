@@ -1,7 +1,6 @@
 import React, { Component } 			from 'react';
 import { withTracker } 					from 'meteor/react-meteor-data';
 import { heroDB } 						from "../../../api/heroes/heroDB.jsx";
-
 class AddHero extends Component{
 	constructor(props){
 		super(props);
@@ -16,6 +15,7 @@ class AddHero extends Component{
     	this.handleChange = this.handleChange.bind(this);
     	this.handleSelectElement = this.handleSelectElement.bind(this);
     	this.handleSelectStar = this.handleSelectStar.bind(this);
+    	this.callAPI = this.callAPI.bind(this);
 	}
 	handleChange(event){
 		event.preventDefault();
@@ -45,6 +45,11 @@ class AddHero extends Component{
 			<span key={hero._id}>[ {hero.name} ] </span>
 		));
 	}
+
+	callAPI(){
+		var store = Meteor.call("getHeroInfo");
+	}
+
 	render(){
 		return(
 		<div className="m-2">
@@ -54,9 +59,8 @@ class AddHero extends Component{
 				data-target="#addHeroes">
 				Manual Add Heroes
 			</button>
-			<button type="button" 
-				className="btn btn-primary" 
-				disabled>
+			<button type="button" onClick ={this.callAPI} 
+				className="btn btn-primary" >
 				Scrape Api
 			</button>
 			<div id="addHeroes"	className="modal fade" role='dialog'>
