@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {heroDB} from "../../../api/heroes/heroDB.jsx";
+import {heroDB} from "../../../../api/heroes/heroDB.jsx";
 import { withTracker } from 'meteor/react-meteor-data';
 
 class FlexBoxes extends Component{

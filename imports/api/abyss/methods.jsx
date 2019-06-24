@@ -12,7 +12,7 @@ Meteor.methods ({
 
 		abyssDB.insert({
 			level: level,
-			teams: [],
+			teams: {},
 		});
 	},
 	'abyss.team.add'(level, team){

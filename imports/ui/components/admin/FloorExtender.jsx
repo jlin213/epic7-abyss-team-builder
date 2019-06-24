@@ -2,7 +2,7 @@ import React, { Component } 			from 'react';
 import { withTracker } 					from 'meteor/react-meteor-data';
 import { abyssDB } 						from "../../../api/abyss/abyssDB.jsx";
 
-class FloorSelector extends Component{
+class FloorExtender extends Component{
 	constructor(props){
 		super(props);
 
@@ -59,4 +59,4 @@ export default withTracker(() => {
 	return {
 		abyss: abyssDB.find({}).fetch(),
 	}	
-})(FloorSelector);
+})(FloorExtender);
