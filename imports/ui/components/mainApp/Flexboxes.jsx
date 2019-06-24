@@ -50,8 +50,17 @@ class FlexBoxes extends Component{
 	}
 	render(){
 		return(
-			<div className="d-flex flex-row justify-content-start">
-				{this.renderHeroIcon()}
+			<div className="filter-heroes border m-2">
+				<div className="card-header d-flex justify-content-end pb-1">
+					Filter Heroes   
+					<label className="switch">
+						<input type="checkbox" />
+						<span className="slider round"></span>
+					</label>
+				</div>
+				<div className="d-flex flex-wrap flex-row justify-content-start">
+					{this.renderHeroIcon()}
+				</div>
 			</div>
 		);
 	}

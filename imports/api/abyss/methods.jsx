@@ -23,5 +23,6 @@ Meteor.methods ({
 		abyssDB.update({
 			teams: team,
 		});
-	}
+	},
+
 });

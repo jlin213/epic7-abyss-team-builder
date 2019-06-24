@@ -13,7 +13,7 @@ FlowRouter.route("/admin", {
 	action: function(params){
 		mount(MainLayout, {
 			title: 'Admin ',
-			leftContent: <AdminButtons />,
+			leftContent1: <AdminButtons />,
 			loginbutton: <AccountsUIWrapper/>,
 		});
 	}
@@ -21,15 +21,14 @@ FlowRouter.route("/admin", {
 
 // /home
 import FlexBoxes 						from '../../ui/components/mainApp/Flexboxes.jsx';
-import LevelSelect 						from '../../ui/components/mainApp/LevelSelect.jsx';
-FlowRouter.route('*', {
+import AbyssDat 						from '../../ui/components/mainApp/AbyssDat/AbyssDat.jsx';
+FlowRouter.route('/', {
 // do some action for this route
 action: function(params) {
 		mount(MainLayout, {
 			loginbutton: <AccountsUIWrapper />,
-		  	leftContent: <FlexBoxes />,
-		  	rightContent: <LevelSelect />,
+		  	leftContent2: <FlexBoxes />,
+		  	rightContent: <AbyssDat />,
 		});
 	}
 });
-
