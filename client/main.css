@@ -3,8 +3,15 @@ body {
   height: 100%;
   width: 100%; }
 
-.w-30 {
-  width: 30%; }
+.w-40 {
+  width: 40%; }
+
+.w-60 {
+  width: 60%; }
+
+.front-page-cards {
+  max-height: 80vh;
+  overflow-y: auto; }
 
 .bg {
   background: url(img/background.png) no-repeat center center fixed;
@@ -15,6 +22,7 @@ body {
   height: 100%; }
 
 .box {
+  cursor: pointer;
   width: 120%;
   height: 120%; }
   .box img {
@@ -34,12 +42,5 @@ body {
   /* Google Chrome, Safari 6+ & Opera 15+ */
   filter: grayscale(1);
   /* Microsoft Edge and Firefox 35+ */ }
-
-.margin {
-  margin: 1%;
-  margin-left: 0.5% !important; }
-
-.font {
-  font-size: 150%; }
 
 /*# sourceMappingURL=main.css.map */
