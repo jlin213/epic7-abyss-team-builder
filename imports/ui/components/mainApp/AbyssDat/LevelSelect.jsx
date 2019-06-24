@@ -8,12 +8,17 @@ class LevelSelect extends Component{
 		super(props);
 
 		this.state = {
-			floor: "",
 		}
 	}
+	componentDidMount(){
+		if ((parseInt(FlowRouter.getParam('floorNum')) ) && ( this.state.floor == "" )){
+			this.setState({ floor: parseInt(FlowRouter.getParam('floorNum')) });
+			console.log(this.state.floor)
+			console.log(parseInt(FlowRouter.getParam('floorNum')))
+		}	
+	}
 	userPick(e){
-
-
+		this.props.handleFloorSelect(e.target.value);
 	}
 	renderFloorSelect(){
 		if (this.props.abyss){
@@ -29,7 +34,7 @@ class LevelSelect extends Component{
 		return (
 			<div id="" className="m-2">
 				<div className="card">
-					<select id="level-selector" className="custom-select" defaultValue={this.state.floor} onChange={this.userPick.bind(this)}>
+					<select id="level-selector" className="custom-select" defaultValue="" onChange={this.userPick.bind(this)}>
 						<option value="" disabled>Choose Abyss Level</option>
 						{this.renderFloorSelect()}
 					</select>

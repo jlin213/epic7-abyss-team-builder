@@ -33,6 +33,10 @@ class AddHero extends Component{
 		event.preventDefault();
 	    this.setState({value: this.state.change}, function(){
 	    	Meteor.call('hero.add', this.state.value , this.state.star, this.state.elementType); 
+		    this.setState({ value: "" });
+    		this.setState({ change: "" });
+   	 		this.setState({ star: 0 });
+   	 		this.setState({ elementType: "" });
 	    });
 	}
 
@@ -94,7 +98,7 @@ class AddHero extends Component{
 										defaultValue="" 
 										onChange={this.handleSelectStar}
 										required>
-										<option value=""		disabled>Choose...</option>
+										<option value=""	disabled>Choose...</option>
 										<option value="Ranger">Ranger</option>
 										<option value="Mage" >Mage</option>
 										<option value="Knight" >Knight</option>

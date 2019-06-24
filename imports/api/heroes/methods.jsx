@@ -21,6 +21,7 @@ Meteor.methods ({
 			element: element,
 		});
 	},
+
     'getHeroInfo' : function() {  
         HTTP.call('GET', 'https://epicsevendb-apiserver.herokuapp.com/api/hero', {
           data: { some: 'json', stuff: 1 }
@@ -41,7 +42,6 @@ Meteor.methods ({
             };
         })
     }
-
 });
 
 
