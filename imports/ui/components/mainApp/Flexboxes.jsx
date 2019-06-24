@@ -12,7 +12,8 @@ class FlexBoxes extends Component{
 	}
 	//access db and get the list of heroes name for url
 	generateHeroName(){
-		const list = this.props.heroes.map((heroes) => {
+		
+		var list = this.props.heroes.map((heroes) => {
 			return heroes.name.toLowerCase();
 		})
 		return list; 
@@ -39,6 +40,7 @@ class FlexBoxes extends Component{
 	//this render the hero icon based on the list of hero names/url with API call
 	renderHeroIcon(){ 
 		const num = Array.from(Array(parseInt(this.props.heroes.length)).keys());
+
 		const listItems = num.map((num) => {
 				var clicked = this.state.click.includes(num) ? "" : "grayscale"; 
 				return <div className="border p-1 w-10 box" value = {num} key ={num+1}  onClick={this.handleClick.bind(this, num, num)}>
@@ -50,7 +52,7 @@ class FlexBoxes extends Component{
 	}
 	render(){
 		return(
-			<div className="d-flex flex-row justify-content-start">
+			<div className="d-flex flex-row flex-wrap justify-content-start">
 				{this.renderHeroIcon()}
 			</div>
 		);
