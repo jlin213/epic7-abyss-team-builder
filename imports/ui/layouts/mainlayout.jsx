@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 
-export const MainLayout = ({title, loginbutton, leftContent}) => (
+export const MainLayout = ({title, loginbutton, leftContent, rightContent}) => (
 	<main className="w-100 h-100">
 		<nav className="navbar navbar-light bg-light">
 		{loginbutton}
@@ -17,6 +17,7 @@ export const MainLayout = ({title, loginbutton, leftContent}) => (
         	</div>
         	<div className="w-60 h-100 p-3">
         		<div className="card front-page-cards">
+        			{rightContent}
         		</div>
         	</div>
         </div>	

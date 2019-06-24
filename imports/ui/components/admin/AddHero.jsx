@@ -88,13 +88,14 @@ class AddHero extends Component{
 									<select id="hero-class" 
 										className="custom-select" 
 										defaultValue="" 
+										onChange={this.handleSelectStar}
 										required>
 										<option value=""		disabled>Choose...</option>
-										<option value="Ranger" 		onSelect={this.handleSelectStar}>Ranger</option>
-										<option value="Mage" 		onSelect={this.handleSelectStar}>Mage</option>
-										<option value="Knight" 		onSelect={this.handleSelectStar}>Knight</option>
-										<option value="Thief" 		onSelect={this.handleSelectStar}>Thief</option>
-										<option value="Soul Weaver" onSelect={this.handleSelectStar}>Soul Weaver</option>
+										<option value="Ranger">Ranger</option>
+										<option value="Mage" >Mage</option>
+										<option value="Knight" >Knight</option>
+										<option value="Thief" >Thief</option>
+										<option value="Soul Weaver" >Soul Weaver</option>
 									</select>
 								</div>
 								<div className="input-group mb-3 ">
@@ -104,11 +105,12 @@ class AddHero extends Component{
 									<select id="star-select" 
 										className="custom-select" 
 										defaultValue=""
+										onChange={this.handleSelectStar}
 										required>
 										<option value="" 	disabled>Choose...</option>
-										<option value="3" 		onSelect={this.handleSelectStar}>3</option>
-										<option value="4" 		onSelect={this.handleSelectStar}>4</option>
-										<option value="5" 		onSelect={this.handleSelectStar}>5</option>
+										<option value="3" >3</option>
+										<option value="4" >4</option>
+										<option value="5" >5</option>
 									</select>
 
 									<div className="input-group-prepend ml-2">
@@ -117,13 +119,14 @@ class AddHero extends Component{
 									<select id="element-select" 
 										className="custom-select" 
 										defaultValue=""
+										onChange={this.handleSelectElement}
 										required>
 										<option value="" 	disabled>Choose...</option>
-										<option value="Fire" 	onSelect={this.handleSelectElement}>Fire</option>
-										<option value="Earth" 	onSelect={this.handleSelectElement}>Earth</option>
-										<option value="Water" 	onSelect={this.handleSelectElement}>Water</option>
-										<option value="Light" 	onSelect={this.handleSelectElement}>Light</option>
-										<option value="Dark" 	onSelect={this.handleSelectElement}>Dark</option>
+										<option value="Fire" >Fire</option>
+										<option value="Earth" >Earth</option>
+										<option value="Water" >Water</option>
+										<option value="Light" >Light</option>
+										<option value="Dark" >Dark</option>
 									</select>
 								</div>
 							</div>
