@@ -10,6 +10,11 @@ export const MainLayout = ({title, loginbutton,
  				<h5>Abyss Team Builder {title}</h5>
 			</div>
 		</nav>
-		{content}
+		<div className="content">
+			{content}
+		</div>
+		<footer className="footer text-center m-2 p-2">
+			<p>Footer Content</p>
+		</footer>
      </main>
 );

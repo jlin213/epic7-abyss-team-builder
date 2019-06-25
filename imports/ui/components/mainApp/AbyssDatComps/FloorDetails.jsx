@@ -14,7 +14,11 @@ class FloorDetails extends Component{
 
 	renderTeams(){		
 		return this.props.abyss.map((teams) => {
-			return teams.slot1 + " " + teams.slot2  + " " + teams.slot3  + " " + teams.slot4;
+			return ( 
+				<li className="list-group-item" key={teams._id}>
+					teams.slot1 + " " + teams.slot2  + " " + teams.slot3  + " " + teams.slot4
+				</li>
+			);
 		})
 		console.log(this.props.abyss[0]);
 	}
@@ -25,11 +29,22 @@ class FloorDetails extends Component{
 		} else {
 			 $filterStatus = "false"
 		}
+
 		return (
 			<div id="" className="m-2">
 				<div className="card">
-					Abyss Floor: {this.props.floor} - UseFilter:{$filterStatus} - Filter:{this.props.filter+" "}
-					<div>{this.renderTeams()}</div>
+					<div className="card-header">
+						Teams: [Abyss Floor: {this.props.floor} - UseFilter:{$filterStatus} - Filter:{this.props.filter+" "}]
+					</div>
+					<ul className="list-group list-group-flush">
+						<li className="list-group-item text-center text-muted"> <i className="fas fa-chevron-up"></i> </li>
+						{this.renderTeams()}
+						<li className="list-group-item text-center text-muted"> <i className="fas fa-chevron-down"></i> </li>
+					</ul>
+
+
+					
+					<div></div>
 				</div>
 			</div>
 		)

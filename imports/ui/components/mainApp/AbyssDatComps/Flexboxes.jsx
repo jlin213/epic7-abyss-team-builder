@@ -78,7 +78,7 @@ class FlexBoxes extends Component{
 						<span className="slider round"></span>
 					</label>
 				</div>
-				<div className="heroes d-flex flex-wrap flex-row">
+				<div className="heroes d-flex flex-wrap flex-row" hidden>
 					{this.renderHeroIcon()}
 				</div>
 			</div>
