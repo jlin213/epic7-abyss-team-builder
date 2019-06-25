@@ -22,13 +22,20 @@ class FlexBoxes extends Component{
 	handleClick(event, value, holder) {
 		if(this.state.click.includes(value)){
 			const list  = this.state.click.filter(item => item !== value);
-			this.setState({click: list});
+			const list1 = this.state.clickAsIDs.filter(item => item != this.props.heroes[value].name) 
+			this.setState({click: list, clickAsIDs: list1}, function(){
+				console.log(this.state.clickAsIDs);
+			});
 		} else{
-			const list = this.state.click.concat(value);			
-			this.setState({click: list});
+			const list = this.state.click.concat(value);	
+			const list1 = this.state.clickAsIDs.concat(this.props.heroes[value].name);		
+			this.setState({click: list, clickAsIDs: list1}, function(){
+				console.log(this.state.clickAsIDs);
+			});
 		}
 
 		this.setState({ toggled:true });
+		this.props.handleDatState('filter', this.state.clickAsIDs);
 		this.props.handleDatState('useFilter', true);
 	}
 
