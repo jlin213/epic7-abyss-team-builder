@@ -6,6 +6,7 @@ import { abyssDB } 						from "../../../api/abyss/abyssDB.jsx";
 import LevelSelect						from './AbyssDatComps/LevelSelect.jsx'
 import FloorDetails						from './AbyssDatComps/FloorDetails.jsx'
 import Flexboxes						from './AbyssDatComps/Flexboxes.jsx'
+import AddTeam							from './AbyssDatComps/AddTeam.jsx'
 
 class AbyssDat extends Component{
 	constructor(props){
@@ -25,8 +26,8 @@ class AbyssDat extends Component{
 			<div className="d-flex w-100 h-100">
 				<div className="w-40 h-100 pl-3 pt-3 pb-3">
 			        <div className="card front-page-cards">
-			        	<Flexboxes handleDatState={this.handleDatState.bind(this)}
-			        	/>
+			        	<AddTeam />
+			        	<Flexboxes />
 			        </div>
 	        	</div>
 	        	<div className="w-60 h-100 p-3">

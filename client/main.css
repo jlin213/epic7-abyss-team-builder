@@ -34,6 +34,10 @@ body {
   filter: grayscale(1);
   /* Microsoft Edge and Firefox 35+ */ }
 
+.teamGrid {
+  transform: rotate(-45deg);
+  position: absolute; }
+
 /* The switch - the box around the slider */
 .switch {
   margin-left: 2%;
