@@ -1,8 +1,7 @@
 import React, { Component } 			from 'react';
 import { withTracker } 					from 'meteor/react-meteor-data';
 
-import SrapeAPI 						from "./SrapeAPI.jsx";
-import FloorExtender 					from "./FloorExtender.jsx";
+import ScrapeAPI 						from "./ScrapeAPI.jsx";
 import AdminInfo 						from "./AdminInfo.jsx";
 
 class AdminButtons extends Component{
@@ -20,10 +19,9 @@ class AdminButtons extends Component{
 							<div className="card w-100">
 								<div className="card-body">
 									<div className="input-group">
-										<SrapeAPI />
+										<ScrapeAPI />
 									</div>
 									<div className="input-group">
-										<FloorExtender />
 									</div>
 								</div>
 							</div>

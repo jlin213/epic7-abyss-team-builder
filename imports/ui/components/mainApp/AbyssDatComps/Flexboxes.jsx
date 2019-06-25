@@ -24,17 +24,18 @@ class FlexBoxes extends Component{
 			const list  = this.state.click.filter(item => item !== value);
 			const list1 = this.state.clickAsIDs.filter(item => item != this.props.heroes[value].name) 
 			this.setState({click: list, clickAsIDs: list1}, function(){
-				console.log(this.state.clickAsIDs);
+				// console.log(this.state.clickAsIDs);
+				this.props.handleDatState('filter', this.state.clickAsIDs);
 			});
 		} else{
 			const list = this.state.click.concat(value);	
 			const list1 = this.state.clickAsIDs.concat(this.props.heroes[value].name);		
 			this.setState({click: list, clickAsIDs: list1}, function(){
-				console.log(this.state.clickAsIDs);
+				// console.log(this.state.clickAsIDs);
+				this.props.handleDatState('filter', this.state.clickAsIDs);
 			});
 		}
 		this.setState({ toggled:true });
-		this.props.handleDatState('filter', this.state.clickAsIDs);
 		this.props.handleDatState('useFilter', true);
 	}
 
@@ -61,6 +62,7 @@ class FlexBoxes extends Component{
 
 		} else {
 			this.setState({click:[]});
+			this.props.handleDatState('filter', []);
 			this.setState({clickAsIDs:[]});
 		}
 		this.setState({toggled:e.target.checked});

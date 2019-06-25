@@ -23,7 +23,7 @@ class FloorDetails extends Component{
 		return (
 			<div id="" className="m-2">
 				<div className="card">
-					Abyss Floor {this.props.floor} : {$filterStatus}
+					Abyss Floor: {this.props.floor} - UseFilter:{$filterStatus} - Filter:{this.props.filter+" "}
 				</div>
 			</div>
 		)

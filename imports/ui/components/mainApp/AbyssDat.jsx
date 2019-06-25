@@ -26,16 +26,18 @@ class AbyssDat extends Component{
 			<div className="d-flex w-100 h-100">
 				<div className="w-40 h-100 pl-3 pt-3 pb-3">
 			        <div className="card front-page-cards">
+				        <LevelSelect handleDatState={this.handleDatState.bind(this)}/>
 			        	<Flexboxes handleDatState={this.handleDatState.bind(this)}/>
-			        	<AddTeam handleDatState={this.handleDatState.bind(this)}/>
-			        </div>
+			        	<AddTeam />
+        </div>
 	        	</div>
 	        	<div className="w-60 h-100 p-3">
 	        		<div className="card front-page-cards">
-						<LevelSelect handleDatState={this.handleDatState.bind(this)}/>
+						
 						<FloorDetails 
 							useFilter={this.state.useFilter}
 							floor={this.state.floor}
+							filter={this.state.filter}
 						/>
 	        		</div>
 	        	</div>

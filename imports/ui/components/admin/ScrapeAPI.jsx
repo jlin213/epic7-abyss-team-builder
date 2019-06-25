@@ -54,13 +54,14 @@ class SrapeAPI extends Component{
 	render(){
 		return(
 		<div className="m-2">
-			<button type="button" 
+		{/*	<button type="button" 
 				className="btn btn-primary mr-2" 
 				data-toggle="modal" 
 				data-target="#addHeroes"
 				disabled>
 				Manual Add Heroes
-			</button>
+			</button> 
+		+*/}
 			<button type="button" onClick ={this.callAPI} 
 				className="btn btn-primary" >
 				Scrape Api
