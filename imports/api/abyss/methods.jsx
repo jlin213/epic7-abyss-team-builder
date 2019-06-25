@@ -16,21 +16,35 @@ Meteor.methods ({
 		});
 	},
 	'abyss.team.add'(floornum, hero1, hero2, hero3, hero4, guardian) {
-		abyssDB.insert({
-			team: {
-				level: floornum,
-				slot1: hero1, 
-				slot2: hero2, 
-				slot3: hero3, 
-				slot4: hero4, 
-				guardian: guardian,
-            	upvotes:[],
-            	downvotes:[],
-            	score: 0, 
+		abyssDB.update( 
+			{team: {}}, 
+			{
+				$setOnInsert: 	{
+					team: {
+					level: floornum,
+					slot1: hero1, 
+					slot2: hero2, 
+					slot3: hero3, 
+					slot4: hero4, 
+					guardian: guardian,
+	            	upvotes:[],
+	            	downvotes:[],
+	            	score: 0, 
 				}
-			}	
 
-		)
+				}
+			}
+			,{upsert: true}
+		);
+		abyssDB.rawCollection().createIndex({
+			"team.slot1" : 1,
+			"team.slot2" : 1,
+			"team.slot3" : 1,
+			"team.slot4" : 1,
+			}, 
+			{unique: true}
+		); 
     } 
+
     
 });
