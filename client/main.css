@@ -13,14 +13,14 @@ body {
   width: 60%; }
 
 .heroes {
-  max-height: 40vh;
+  max-height: 50vh;
   overflow-y: auto;
   padding: 0; }
 
 .box {
   cursor: pointer;
-  width: 14.285714286%;
-  height: 14.285714286%; }
+  width: 12.5%;
+  height: 12.5%; }
   .box img {
     height: 100%;
     width: 100%;

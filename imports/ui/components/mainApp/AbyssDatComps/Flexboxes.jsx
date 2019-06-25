@@ -7,6 +7,7 @@ class FlexBoxes extends Component{
 		super(props);
 		this.state = {
 			click: [],
+			clickAsIDs: [],
 			toggled: false,
 		}; 
 		this.handleClick = this.handleClick.bind(this);
@@ -37,8 +38,8 @@ class FlexBoxes extends Component{
 		const listItems = num.map((num) => {
 			var clicked = this.state.click.includes(num) ? "" : "grayscale"; 
 			return <div className="border p-1 w-10 box" 
-							value = {num} 
-							key ={num+1}  
+							value={num} 
+							key={num+1}  
 							onClick={this.handleClick.bind(this, num, num)}>
 					<img src={'http://assets.epicsevendb.com/hero/' + this.generateHeroName()[num] + "/icon.png"} 
 						className={clicked} 
@@ -54,6 +55,7 @@ class FlexBoxes extends Component{
 
 		} else {
 			this.setState({click:[]});
+			this.setState({clickAsIDs:[]});
 		}
 		this.setState({toggled:e.target.checked});
 		this.props.handleDatState('useFilter', e.target.checked);
