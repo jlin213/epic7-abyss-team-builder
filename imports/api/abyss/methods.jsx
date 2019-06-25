@@ -17,19 +17,16 @@ Meteor.methods ({
 	},
 	'abyss.team.add'(floornum, hero1, hero2, hero3, hero4, guardian) {
 		abyssDB.insert({
-			team: {
-				level: floornum,
-				slot1: hero1, 
-				slot2: hero2, 
-				slot3: hero3, 
-				slot4: hero4, 
-				guardian: guardian,
-            	upvotes:[],
-            	downvotes:[],
-            	score: 0, 
-				}
-			}	
-
+			level: floornum,
+			slot1: hero1, 
+			slot2: hero2, 
+			slot3: hero3, 
+			slot4: hero4, 
+			guardian: guardian,
+        	upvotes:[],
+        	downvotes:[],
+        	score: 0, 
+			}
 		)
     } 
     
