@@ -24,8 +24,8 @@ class AdminInfo extends Component{
 	renderAdminAbyss(){
 		if (this.props.abyss){
 			return this.props.abyss.map((a) => (
-				<div key={a._id} value={a.level} >
-					Floor: {a.level}|Teams: 
+				<div key={a._id} value={a.team.level} >
+					Floor: {a.team.level}|Teams: 
 				</div>
 			));
 		}
