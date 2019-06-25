@@ -15,14 +15,22 @@ Meteor.methods ({
 			teams: {},
 		});
 	},
-	'abyss.team.add'(level, team){
-		if (!this.userId) {	
-			throw new Meteor.Error('insert not-authorized, Please log in first.');	
-		}
-		check(level, Number);
-		abyssDB.update({
-			teams: team,
-		});
-	},
+	'abyss.team.add'(floornum, hero1, hero2, hero3, hero4, guardian) {
+		abyssDB.insert({
+			team: {
+				level: floornum,
+				slot1: hero1, 
+				slot2: hero2, 
+				slot3: hero3, 
+				slot4: hero4, 
+				guardian: '',
+            	upvotes:[],
+            	downvotes:[],
+            	score: 0, 
+				}
+			}	
 
+		)
+    } 
+    
 });
