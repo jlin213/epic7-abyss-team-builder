@@ -14,11 +14,12 @@ class AbyssDat extends Component{
 
 		this.state = {
 			floor: "",
-			
+			useFilter: false,
+			filter: [],
 		}
 	}
 
-	handleFloorSelect(input){ this.setState({ floor: input }) }
+	handleDatState(key, value){ this.setState({ [key]: value }) }
 
 	render(){
 		return (
@@ -31,12 +32,11 @@ class AbyssDat extends Component{
 	        	</div>
 	        	<div className="w-60 h-100 p-3">
 	        		<div className="card front-page-cards">
-	        			<div id="" className="m-2">
-							<div className="card">
-								<LevelSelect handleFloorSelect={this.handleFloorSelect.bind(this)}/>
-								<FloorDetails floor={this.state.floor}/>
-							</div>
-						</div>
+						<LevelSelect handleDatState={this.handleDatState.bind(this)}/>
+						<FloorDetails 
+							useFilter={this.state.useFilter}
+							floor={this.state.floor}
+						/>
 	        		</div>
 	        	</div>
 	        </div>	
