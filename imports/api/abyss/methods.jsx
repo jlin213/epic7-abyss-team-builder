@@ -16,6 +16,7 @@ Meteor.methods ({
 		});
 	},
 	'abyss.team.add'(floornum, hero1, hero2, hero3, hero4, guardian) {
+
 		abyssDB.update( 
 			{team: {}}, 
 			{

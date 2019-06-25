@@ -83,10 +83,10 @@ class AddTeam extends Component{
 		return(
 		<div className="m-2">
 			<button type="button" 
-				className="btn btn-primary" 
+				className="btn btn-primary btn-block" 
 				data-toggle="modal" 
 				data-target="#addHeroes">
-				AddTeam				
+				Add Team				
 			</button>
 			<div id="addHeroes"	className="modal fade data-keyboard data-backdrop" role='dialog'>
 				<div className="modal-dialog modal-dialog-centered modal-lg" role="document">
