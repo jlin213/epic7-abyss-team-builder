@@ -7,7 +7,7 @@ export const MainLayout = ({title, loginbutton,
 		<nav className="navbar navbar-light bg-light">
 		{loginbutton}
 			<div className="justify-content-center align-self-center m-1">
- 				<h4>Abyss Team Builder {title}</h4>
+ 				<h5>Abyss Team Builder {title}</h5>
 			</div>
 		</nav>
 		{content}

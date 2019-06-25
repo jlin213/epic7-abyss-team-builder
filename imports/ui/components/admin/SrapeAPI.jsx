@@ -1,7 +1,7 @@
 import React, { Component } 			from 'react';
 import { withTracker } 					from 'meteor/react-meteor-data';
 import { heroDB } 						from "../../../api/heroes/heroDB.jsx";
-class AddHero extends Component{
+class SrapeAPI extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
@@ -48,15 +48,17 @@ class AddHero extends Component{
 
 	callAPI(){
 		var store = Meteor.call("getHeroInfo");
+		alert("Fetched and Scraped");
 	}
 
 	render(){
 		return(
 		<div className="m-2">
 			<button type="button" 
-				className="btn btn-primary" 
+				className="btn btn-primary mr-2" 
 				data-toggle="modal" 
-				data-target="#addHeroes">
+				data-target="#addHeroes"
+				disabled>
 				Manual Add Heroes
 			</button>
 			<button type="button" onClick ={this.callAPI} 
@@ -158,4 +160,4 @@ export default withTracker(() => {
 	return {
 		heroes: heroDB.find({},{sort: {name: 1} }).fetch(),
 	}
-})(AddHero);
+})(SrapeAPI);

@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import {heroDB} from "../../../../api/heroes/heroDB.jsx";
-import { withTracker } from 'meteor/react-meteor-data';
+import React, { Component } 			from 'react';
+import { heroDB } 						from "../../../../api/heroes/heroDB.jsx";
+import { withTracker } 					from 'meteor/react-meteor-data';
 
 class FlexBoxes extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			click: [], 
+			click: [],
 		}; 
 		this.handleClick = this.handleClick.bind(this);
 	}
 	//access db and get the list of heroes name for url
 	generateHeroName(){
-		
 		var list = this.props.heroes.map((heroes) => {
 			return heroes.name.toLowerCase();
 		})
@@ -37,10 +36,9 @@ class FlexBoxes extends Component{
 		}
 	}
 
-	//this render the hero icon based on the list of hero names/url with API call
+	//this renders the hero icon based on the list of hero names/url with API call
 	renderHeroIcon(){ 
 		const num = Array.from(Array(parseInt(this.props.heroes.length)).keys());
-
 		const listItems = num.map((num) => {
 				var clicked = this.state.click.includes(num) ? "" : "grayscale"; 
 				return <div className="border p-1 w-10 box" value = {num} key ={num+1}  onClick={this.handleClick.bind(this, num, num)}>
@@ -50,17 +48,19 @@ class FlexBoxes extends Component{
 			);
 		return listItems;
 	}
+	toggleFilter(e){
+	}
 	render(){
 		return(
-			<div className="filter-heroes border m-2">
+			<div className="card m-2">
 				<div className="card-header d-flex justify-content-end pb-1">
 					Filter Heroes   
-					<label className="switch">
+					<label className="switch" onClick={this.toggleFilter.bind(this)}>
 						<input type="checkbox" />
 						<span className="slider round"></span>
 					</label>
 				</div>
-				<div className="d-flex flex-wrap flex-row justify-content-start">
+				<div className="heroes d-flex flex-wrap flex-row">
 					{this.renderHeroIcon()}
 				</div>
 			</div>
@@ -72,9 +72,8 @@ export default withTracker(() => {
 	Meteor.subscribe('heroes.all');
  
 	return {
-		heroes: heroDB.find({}).fetch(),
-		}
-	}	
-)(FlexBoxes);
+		heroes: heroDB.find({},{sort: {natStar: -1, element: 1, name: 1 }}).fetch(),
+	}
+})(FlexBoxes);
 
 
