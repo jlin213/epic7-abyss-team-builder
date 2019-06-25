@@ -16,7 +16,7 @@ class FloorDetails extends Component{
 		return this.props.abyss.map((teams) => {
 			return ( 
 				<li className="list-group-item" key={teams._id}>
-					teams.slot1 + " " + teams.slot2  + " " + teams.slot3  + " " + teams.slot4
+					{teams.team.slot1 + " " + teams.team.slot2  + " " + teams.team.slot3  + " " + teams.team.slot4}
 				</li>
 			);
 		})
@@ -54,6 +54,6 @@ export default withTracker((props) => {
 	Meteor.subscribe('abyss.all');
 	console.log()
 	return {
-		abyss: abyssDB.find({ level: props.floor }).fetch(),
+		abyss: abyssDB.find({ 'team.level': props.floor }).fetch(),
 	}	
 })(FloorDetails);
