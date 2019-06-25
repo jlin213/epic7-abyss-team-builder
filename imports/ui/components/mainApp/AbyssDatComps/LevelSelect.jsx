@@ -18,7 +18,7 @@ class LevelSelect extends Component{
 		}	
 	}
 	userPick(e){
-		this.props.handleFloorSelect(e.target.value);
+		this.props.handleDatState( 'floor' , e.target.value);
 	}
 	renderFloorSelect(){
 		if (this.props.abyss){
