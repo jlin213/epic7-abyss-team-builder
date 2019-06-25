@@ -143,7 +143,7 @@ class AddTeam extends Component{
 									</select>
 								</div>
 							</div>
-							<div>
+							<div className="row">
 								<img src = {this.state.url1} className = "border"/>
 								<img src = {this.state.url2} className = "border"/>
 								<img src = {this.state.url3} className = "border"/>
