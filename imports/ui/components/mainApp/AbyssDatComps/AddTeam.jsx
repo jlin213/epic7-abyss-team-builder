@@ -28,8 +28,8 @@ class AddTeam extends Component{
 		const heronum = "hero"+ event.target.id; 
 		var url = 'http://assets.epicsevendb.com/hero/'+ event.target.value +  "/icon.png"
 	   	this.setState({[urlKey]: url, [heronum]: event.target.value}, function(){
-	   		console.log(this.state.url1)
 	    })
+
 	}
 	handleSubmit(event) {
 		event.preventDefault();
@@ -38,6 +38,19 @@ class AddTeam extends Component{
 	    if(this.state.hero1 != "" && this.state.hero2 != "" && this.state.hero3 != "" && this.state.hero4 != "" && this.state.guardian!= ""){
     		Meteor.call('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian); 
     		console.log('abyss'); 
+    		$('[id^="addHeroes"]').modal('hide');
+
+    		this.setState({
+	    		hero1: "", 
+				hero2: "",
+				hero3: "",
+				hero4: "",
+				url1: "",
+				url2: "", 
+				url3: "",
+				url4: "",
+				guardian: "",
+    		})
 	    	   
 	    };
 	}
@@ -46,10 +59,18 @@ class AddTeam extends Component{
 		this.setState({guardian: event.target.value} );
 	}
 
-	renderHeroNames(){
-		return this.props.heroes.map((hero) => (
-			<option key={hero._id}> {hero.name} </option>
-		));
+	renderHeroNames(name1, name2, name3 ){
+
+		return this.props.heroes.map((hero) => 
+			{
+			if(hero.name != name1 && hero.name!= name2 && hero.name!= name3){ 
+			return <option key={hero._id}> {hero.name} </option>
+			}
+			else {
+				return <option key = {hero._id} disabled> {hero.name} </option>
+			}
+			}
+		);
 	}
 	render(){
 		return(
@@ -60,12 +81,12 @@ class AddTeam extends Component{
 				data-target="#addHeroes">
 				AddTeam				
 			</button>
-			<div id="addHeroes"	className="modal fade" role='dialog'>
+			<div id="addHeroes"	className="modal fade data-keyboard data-backdrop" role='dialog'>
 				<div className="modal-dialog modal-dialog-centered modal-lg" role="document">
 					<div className="modal-content">
 						<div className="modal-header">
 							<h5 className="modal-title" id="exampleModalLabel">
-								Add Team to Abyss Level: 
+								Add Team to Abyss Level {this.props.floor}: 
 							</h5>
 							<button type="button" 
 								className="close" 
@@ -87,7 +108,7 @@ class AddTeam extends Component{
 										required>
 										<option> Choose... </option>
 
-										{this.renderHeroNames()}
+										{this.renderHeroNames(this.state.hero2, this.state.hero3, this.state.hero4)}
 									</select>
 								</div>	
 								<div className="input-group mb-2">
@@ -101,7 +122,7 @@ class AddTeam extends Component{
 											onChange={this.handleChange}
 											required>
 											<option> Choose... </option>
-											{this.renderHeroNames()}
+											{this.renderHeroNames(this.state.hero1, this.state.hero3, this.state.hero4)}
 										</select>
 								</div>		
 								<div className="input-group mb-2">
@@ -114,7 +135,7 @@ class AddTeam extends Component{
 											onChange={this.handleChange}
 											required>
 											<option> Choose... </option>
-											{this.renderHeroNames()}
+											{this.renderHeroNames(this.state.hero1, this.state.hero2, this.state.hero4)}
 										</select>
 								</div>
 								<div className="input-group mb-2">
@@ -128,7 +149,7 @@ class AddTeam extends Component{
 											onChange={this.handleChange}
 											required>
 											<option> Choose... </option>
-											{this.renderHeroNames()}
+											{this.renderHeroNames(this.state.hero1, this.state.hero2, this.state.hero3)}
 										</select>
 								</div>
 								<div className = "input-group mb-2">
