@@ -15,6 +15,7 @@ class AddTeam extends Component{
 			url2: "", 
 			url3: "",
 			url4: "",
+			guardian: "",
 		}; 
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,24 +23,28 @@ class AddTeam extends Component{
 	}
 	handleChange(event){
 		event.preventDefault();
-		const id = event.target.id 
-		const heronum = "hero"+ parseInt(event.target.id); 
-		console.log(id)
+		const urlKey = "url" + event.target.id; 
+		const heronum = "hero"+ event.target.id; 
 		var url = 'http://assets.epicsevendb.com/hero/'+ event.target.value +  "/icon.png"
-		console.log(url);
-	   	this.setState({[id]: url, [heronum]: event.target.value}, function(){
+	   	this.setState({[urlKey]: url, [heronum]: event.target.value}, function(){
 	   		console.log(this.state.url1)
 	    })
 	}
 	handleSubmit(event) {
 		event.preventDefault();
 	    this.setState({}, function(){
-	    	if(this.state.hero1 != "" && this.hero2 != "" && this.state.hero3 != "" && this.state.hero4 != ""){
-	    		Meteor.call('abyss.team.add', this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4); 
-
+	    	if(this.state.hero1 != "" && this.hero2 != "" && this.state.hero3 != "" && this.state.hero4 != "" && this.state.guardian){
+	    		Meteor.call('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian ); 
+	    		console.log('abyss'); 
 	    	}
 		    
 	    });
+	}
+	handleSelectGuardian(event){
+		event.preventDefault();
+		this.setState({guardian: event.target.value} );
+
+		
 	}
 
 	renderHeroNames(){
@@ -76,7 +81,7 @@ class AddTeam extends Component{
 									<div className="input-group-prepend">
 										<label className="input-group-text" htmlFor="hero-name-1">Hero 1:</label>
 									</div>
-									<select id="url1" 
+									<select id="1" 
 										className="custom-select" 
 										defaultValue="" 
 										onChange={this.handleChange}
@@ -91,7 +96,7 @@ class AddTeam extends Component{
 									<div className="input-group-prepend">
 										<label className="input-group-text" htmlFor="hero-name-2">Hero 2:</label>
 									</div>
-										<select id="url2" 
+										<select id= "2" 
 											className="custom-select" 
 											defaultValue="" 
 											onChange={this.handleChange}
@@ -104,7 +109,7 @@ class AddTeam extends Component{
 									<div className="input-group-prepend">
 										<label className="input-group-text" htmlFor="hero-name-3">Hero 3:</label>
 									</div>
-										<select id="url3" 
+										<select id="3" 
 											className="custom-select" 
 											defaultValue="" 
 											onChange={this.handleChange}
@@ -118,7 +123,7 @@ class AddTeam extends Component{
 									<div className="input-group-prepend">
 										<label className="input-group-text" htmlFor="hero-name-4">Hero 4:</label>
 									</div>
-										<select id="url4" 
+										<select id="4" 
 											className="custom-select" 
 											defaultValue="" 
 											onChange={this.handleChange}
@@ -127,6 +132,18 @@ class AddTeam extends Component{
 											{this.renderHeroNames()}
 										</select>
 								</div>
+								<div className = "input-group mb-2">
+								<div className="input-group-prepend">
+										<label className="input-group-text" htmlFor="star-select">Guardian:</label>
+									</div>
+									<select className="custom-select" id="star-select">
+										<option disabled>Choose...</option>
+										<option value="3" onSelect={this.handleSelectGuardian}>Arky</option>
+										<option value="4" onSelect={this.handleSelectGuardian}>Zeaon</option>
+										<option value="5" onSelect={this.handleSelectGuardian}>Kromcruz</option>
+									</select>
+								</div>
+
 							</div>
 							<div>
 								<img src = {this.state.url1} className = "border"/>

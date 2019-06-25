@@ -33,7 +33,6 @@ class FlexBoxes extends Component{
 				console.log(this.state.clickAsIDs);
 			});
 		}
-
 		this.setState({ toggled:true });
 		this.props.handleDatState('filter', this.state.clickAsIDs);
 		this.props.handleDatState('useFilter', true);
