@@ -1,7 +1,6 @@
 import React, { Component } 			from 'react';
 import { FlowRouter } 					from 'meteor/ostrio:flow-router-extra';
 import { withTracker } 					from 'meteor/react-meteor-data';
-import { abyssDB } 						from "../../../../api/abyss/abyssDB.jsx";
 
 class LevelSelect extends Component{
 	constructor(props){
@@ -20,14 +19,10 @@ class LevelSelect extends Component{
 	userPick(e){
 		this.props.handleDatState( 'floor' , e.target.value);
 	}
-	renderFloorSelect(){
-		if (this.props.abyss){
-			return this.props.abyss.map((a) => (
-				<option key={a._id} value={a.level} >
-					Floor: {a.level}
-				</option>
-			));
-		}
+	renderFloorSelect(){		
+		return Array(Meteor.settings.public.maxFloors).fill().map((v,i)=>i).map((num) => {
+			return <option key={num} value={num +1}>	Floor: {num +1}</option>
+		})
 	}
 
 	render(){
@@ -44,9 +39,7 @@ class LevelSelect extends Component{
 	}
 }
 export default withTracker(() => {
-	Meteor.subscribe('abyss.all');
 	
 	return {
-		abyss: abyssDB.find({}).fetch(),
 	}	
 })(LevelSelect);

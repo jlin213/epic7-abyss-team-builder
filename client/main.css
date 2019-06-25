@@ -13,7 +13,7 @@ body {
   width: 60%; }
 
 .heroes {
-  max-height: 50vh;
+  max-height: 60vh;
   overflow-y: auto;
   padding: 0; }
 
