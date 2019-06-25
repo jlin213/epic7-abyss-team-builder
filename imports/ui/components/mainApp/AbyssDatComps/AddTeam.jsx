@@ -37,7 +37,7 @@ class AddTeam extends Component{
 		console.log(this.state.hero1)
 		console.log(this.state.guardian) 
 	    if(this.state.hero1 != "" && this.state.hero2 != "" && this.state.hero3 != "" && this.state.hero4 != "" && this.state.guardian!= ""){
-
+	    	console.log(this.props.floor);
     		Meteor.call('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian); 
     		$('[id^="addHeroes"]').modal('hide');
 
