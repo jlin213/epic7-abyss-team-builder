@@ -20,6 +20,7 @@ class AddTeam extends Component{
 
 		this.handleSubmit = this.handleSubmit.bind(this);
     	this.handleChange = this.handleChange.bind(this);
+    	this.handleSelectGuardian = this.handleSelectGuardian.bind(this);
 	}
 	handleChange(event){
 		event.preventDefault();
@@ -32,19 +33,17 @@ class AddTeam extends Component{
 	}
 	handleSubmit(event) {
 		event.preventDefault();
-	    this.setState({}, function(){
-	    	if(this.state.hero1 != "" && this.hero2 != "" && this.state.hero3 != "" && this.state.hero4 != "" && this.state.guardian){
-	    		Meteor.call('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian ); 
-	    		console.log('abyss'); 
-	    	}
-		    
-	    });
+		console.log(this.state.hero1)
+		console.log(this.state.guardian) 
+	    if(this.state.hero1 != "" && this.state.hero2 != "" && this.state.hero3 != "" && this.state.hero4 != "" && this.state.guardian!= ""){
+    		Meteor.call('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian); 
+    		console.log('abyss'); 
+	    	   
+	    };
 	}
 	handleSelectGuardian(event){
 		event.preventDefault();
 		this.setState({guardian: event.target.value} );
-
-		
 	}
 
 	renderHeroNames(){
@@ -133,17 +132,16 @@ class AddTeam extends Component{
 										</select>
 								</div>
 								<div className = "input-group mb-2">
-								<div className="input-group-prepend">
-										<label className="input-group-text" htmlFor="star-select">Guardian:</label>
+									<div className="input-group-prepend">
+											<label className="input-group-text" htmlFor="guardian-select">Guardian:</label>
 									</div>
-									<select className="custom-select" id="star-select">
-										<option disabled>Choose...</option>
-										<option value="3" onSelect={this.handleSelectGuardian}>Arky</option>
-										<option value="4" onSelect={this.handleSelectGuardian}>Zeaon</option>
-										<option value="5" onSelect={this.handleSelectGuardian}>Kromcruz</option>
+									<select className="custom-select" id="star-select" onChange = {this.handleSelectGuardian}>
+											<option >Choose...</option>
+											<option value="Arky" onChange={this.handleSelectGuardian}>Arky</option>
+											<option value="Zeaon" onChange={this.handleSelectGuardian}>Zeaon</option>
+											<option value="Kromcruz" onChange={this.handleSelectGuardian}>Kromcruz</option>
 									</select>
 								</div>
-
 							</div>
 							<div>
 								<img src = {this.state.url1} className = "border"/>

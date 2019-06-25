@@ -28,7 +28,7 @@ class AbyssDat extends Component{
 			        <div className="card front-page-cards">
 				        <LevelSelect handleDatState={this.handleDatState.bind(this)}/>
 			        	<Flexboxes handleDatState={this.handleDatState.bind(this)}/>
-			        	<AddTeam />
+			        	<AddTeam floor={this.state.floor}/>
         </div>
 	        	</div>
 	        	<div className="w-60 h-100 p-3">

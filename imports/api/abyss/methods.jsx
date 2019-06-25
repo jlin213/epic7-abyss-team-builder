@@ -23,7 +23,7 @@ Meteor.methods ({
 				slot2: hero2, 
 				slot3: hero3, 
 				slot4: hero4, 
-				guardian: '',
+				guardian: guardian,
             	upvotes:[],
             	downvotes:[],
             	score: 0, 
