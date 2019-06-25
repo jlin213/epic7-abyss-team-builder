@@ -16,7 +16,7 @@ class AdminInfo extends Component{
 		if (this.props.heroes){
 			return this.props.heroes.map((a) => (
 				<div key={a._id} value={a.name} >
-					name:{a.name} - natStar:{a.natStar} - element:{a.element}
+					name:{a.name}|nameCleaned:{a.nameCleaned}|natStar:{a.natStar}|element:{a.element}
 				</div>
 			));
 		}
