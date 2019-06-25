@@ -7,24 +7,16 @@ class FlexBoxes extends Component{
 		super(props);
 		this.state = {
 			click: [],
+			toggled: false,
 		}; 
 		this.handleClick = this.handleClick.bind(this);
 	}
 	//access db and get the list of heroes name for url
 	generateHeroName(){
-		var list = this.props.heroes.map((heroes) => {
+		return this.props.heroes.map((heroes) => {
 			return heroes.name.toLowerCase();
 		})
-		return list; 
 	}
-
-	//generate the url for API call 
-	generateURL(i){
-		var url = new URL('http://assets.epicsevendb.com/hero/') ;
-		var newURL = url + this.generateHeroName()[i] + "/icon.png" ;
-		return newURL;
-	}
-
 	//this will toggle the click based on the index of the clicked icon  
 	handleClick(event, value, holder) {
 		if(this.state.click.includes(value)){
@@ -34,29 +26,45 @@ class FlexBoxes extends Component{
 			const list = this.state.click.concat(value);			
 			this.setState({click: list});
 		}
+
+		this.setState({ toggled:true });
+		this.props.handleDatState('useFilter', true);
 	}
 
 	//this renders the hero icon based on the list of hero names/url with API call
 	renderHeroIcon(){ 
 		const num = Array.from(Array(parseInt(this.props.heroes.length)).keys());
 		const listItems = num.map((num) => {
-				var clicked = this.state.click.includes(num) ? "" : "grayscale"; 
-				return <div className="border p-1 w-10 box" value = {num} key ={num+1}  onClick={this.handleClick.bind(this, num, num)}>
-						<img src = {this.generateURL(num)} className = {clicked} value = {num}/>
-				</div>
-				}
-			);
+			var clicked = this.state.click.includes(num) ? "" : "grayscale"; 
+			return <div className="border p-1 w-10 box" 
+							value = {num} 
+							key ={num+1}  
+							onClick={this.handleClick.bind(this, num, num)}>
+					<img src={'http://assets.epicsevendb.com/hero/' + this.generateHeroName()[num] + "/icon.png"} 
+						className={clicked} 
+						value={num}/>
+			</div>
+			}
+		);
 		return listItems;
 	}
+
 	toggleFilter(e){
+		if (e.target.checked){
+
+		} else {
+			this.setState({click:[]});
+		}
+		this.setState({toggled:e.target.checked});
+		this.props.handleDatState('useFilter', e.target.checked);
 	}
 	render(){
 		return(
 			<div className="card m-2">
 				<div className="card-header d-flex justify-content-end pb-1">
 					Filter Heroes   
-					<label className="switch" onClick={this.toggleFilter.bind(this)}>
-						<input type="checkbox" />
+					<label className="switch">
+						<input type="checkbox" onChange={this.toggleFilter.bind(this)} checked={this.state.toggled}/>
 						<span className="slider round"></span>
 					</label>
 				</div>

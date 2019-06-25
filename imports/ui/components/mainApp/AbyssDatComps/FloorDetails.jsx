@@ -7,15 +7,23 @@ class FloorDetails extends Component{
 	constructor(props){
 		super(props);
 
-		this.state = {			
+		this.state = {	
+
 		}
 	}
 
 	render(){
+		let $filterStatus = "";
+		if (this.props.useFilter){
+			 $filterStatus = "true"
+		} else {
+			 $filterStatus = "false"
+		}
+
 		return (
 			<div id="" className="m-2">
 				<div className="card">
-					Abyss Floor {this.props.floor}:
+					Abyss Floor {this.props.floor} : {$filterStatus}
 				</div>
 			</div>
 		)

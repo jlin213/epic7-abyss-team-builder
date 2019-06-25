@@ -13,6 +13,7 @@ class AbyssDat extends Component{
 
 		this.state = {
 			floor: "",
+			useFilter: false,
 			filter: [],
 		}
 	}
@@ -24,13 +25,17 @@ class AbyssDat extends Component{
 			<div className="d-flex w-100 h-100">
 				<div className="w-40 h-100 pl-3 pt-3 pb-3">
 			        <div className="card front-page-cards">
-			        	<Flexboxes />
+			        	<Flexboxes handleDatState={this.handleDatState.bind(this)}
+			        	/>
 			        </div>
 	        	</div>
 	        	<div className="w-60 h-100 p-3">
 	        		<div className="card front-page-cards">
 						<LevelSelect handleDatState={this.handleDatState.bind(this)}/>
-						<FloorDetails floor={this.state.floor}/>
+						<FloorDetails 
+							useFilter={this.state.useFilter}
+							floor={this.state.floor}
+						/>
 	        		</div>
 	        	</div>
 	        </div>	
