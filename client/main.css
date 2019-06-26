@@ -67,7 +67,8 @@ body {
   position: relative;
   display: inline-block;
   width: 55px;
-  height: 25px; }
+  height: 25px;
+  margin-bottom: 0; }
 
 /* Hide default HTML checkbox */
 .switch input {

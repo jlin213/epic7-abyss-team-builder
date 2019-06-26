@@ -23,18 +23,11 @@ class FloorDetails extends Component{
 		console.log(this.props.abyss[0]);
 	}
 	render(){
-		let $filterStatus = "";
-		if (this.props.useFilter){
-			 $filterStatus = "true"
-		} else {
-			 $filterStatus = "false"
-		}
-
 		return (
 			<div id="" className="m-2">
 				<div className="card">
 					<div className="card-header">
-						Teams: [Abyss Floor: {this.props.floor} - UseFilter:{$filterStatus} - Filter:{this.props.filter+" "}]
+						Teams:
 					</div>
 					<ul className="list-group list-group-flush">
 						<li className="list-group-item text-center text-muted"> <i className="fas fa-chevron-up"></i> </li>
@@ -53,7 +46,7 @@ class FloorDetails extends Component{
 export default withTracker((props) => {
 	Meteor.subscribe('abyss.all');
 
-	if (props.useFilter){
+	if (props.useFilterFrom){
 		return {
 			abyss: abyssDB.find({ 
 				$and : [
@@ -62,6 +55,20 @@ export default withTracker((props) => {
 					{ 'team.slot2': { $in: props.filter } },
 					{ 'team.slot3': { $in: props.filter } },
 					{ 'team.slot4': { $in: props.filter } }
+				]
+			}).fetch(),
+		}	
+	} else if(props.useFilterContains){
+		return {
+			abyss: abyssDB.find({ 
+				$and : [
+					{ 'team.level': props.floor },
+					{ $or : [ 
+						{ 'team.slot1': { $in: props.filter } },
+						{ 'team.slot2': { $in: props.filter } },
+						{ 'team.slot3': { $in: props.filter } },
+						{ 'team.slot4': { $in: props.filter } }
+					]}
 				]
 			}).fetch(),
 		}	
