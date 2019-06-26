@@ -187,6 +187,7 @@ class AddTeam extends Component{
 											<option value="Arky" onChange={this.handleSelectGuardian}>Arky</option>
 											<option value="Zeaon" onChange={this.handleSelectGuardian}>Zeaon</option>
 											<option value="Kromcruz" onChange={this.handleSelectGuardian}>Kromcruz</option>
+											<option value="Giraffe" disabled>Giraffe</option>
 									</select>
 								</div>
 							</div>
