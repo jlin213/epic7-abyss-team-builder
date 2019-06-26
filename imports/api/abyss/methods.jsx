@@ -16,7 +16,7 @@ Meteor.methods ({
 		});
 	},
 	'abyss.team.add'(floornum, hero1, hero2, hero3, hero4, guardian) {
-
+		try {
 		abyssDB.update( 
 			{team: {}}, 
 			{
@@ -36,7 +36,10 @@ Meteor.methods ({
 				}
 			}
 			,{upsert: true}
-		);
+		)
+		}catch(e){
+			throw new Meteor.Error("duplicate-error");
+		}
 		abyssDB.rawCollection().createIndex({
 			"team.slot1" : 1,
 			"team.slot2" : 1,

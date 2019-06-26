@@ -36,10 +36,21 @@ class AddTeam extends Component{
 		event.preventDefault();
 		console.log(this.state.hero1)
 		console.log(this.state.guardian) 
+		
 	    if(this.state.hero1 != "" && this.state.hero2 != "" && this.state.hero3 != "" && this.state.hero4 != "" && this.state.guardian!= ""){
-	    	console.log(this.props.floor);
-    		Meteor.call('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian); 
-    		$('[id^="addHeroes"]').modal('hide');
+
+    		var duplicateError = false; 
+    		var scope = this; 
+
+    		Meteor.call(('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian), function(err, result){
+    			if(err &&  scope.state.duplicateError == false){
+    				scope.setState({duplicateError: true })
+    			}
+    		})
+       		
+
+
+    		// $('[id^="addHeroes"]').modal('hide');
 
     		this.setState({
 	    		hero1: "", 
@@ -51,6 +62,8 @@ class AddTeam extends Component{
 				url3: "",
 				url4: "",
 				guardian: "",
+    		}, function(){
+    			console.log(this.state.duplicateError)
     		})
 	    	   
 	    };
@@ -113,7 +126,6 @@ class AddTeam extends Component{
 									</div>
 									<select id="1" 
 										className="custom-select" 
-										defaultValue="" 
 										value = {this.state.hero1}
 										onChange={this.handleChange}
 										required>
@@ -129,7 +141,6 @@ class AddTeam extends Component{
 									</div>
 										<select id= "2" 
 											className="custom-select" 
-											defaultValue="" 
 											value = {this.state.hero2}
 											onChange={this.handleChange}
 											required>
@@ -143,7 +154,6 @@ class AddTeam extends Component{
 									</div>
 										<select id="3" 
 											className="custom-select" 
-											defaultValue="" 
 											value = {this.state.hero3}
 											onChange={this.handleChange}
 											required>
@@ -158,7 +168,6 @@ class AddTeam extends Component{
 									</div>
 										<select id="4" 
 											className="custom-select" 
-											defaultValue="" 
 											value = {this.state.hero4}
 											onChange={this.handleChange}
 											required>
