@@ -8,7 +8,8 @@ class FlexBoxes extends Component{
 		this.state = {
 			click: [],
 			clickAsIDs: [],
-			toggled: false,
+			toggledFrom: false,
+			toggledContains: false,
 		}; 
 		this.handleClick = this.handleClick.bind(this);
 	}
@@ -35,8 +36,10 @@ class FlexBoxes extends Component{
 				this.props.handleDatState('filter', this.state.clickAsIDs);
 			});
 		}
-		this.setState({ toggled:true });
-		this.props.handleDatState('useFilter', true);
+		if (!this.state.toggledFrom) {
+			this.setState({ toggledContains: true });
+			this.props.handleDatState('useFilterContains', true);
+		}
 	}
 
 	//this renders the hero icon based on the list of hero names/url with API call
@@ -59,24 +62,58 @@ class FlexBoxes extends Component{
 
 	toggleFilter(e){
 		if (e.target.checked){
-
+			switch(e.target.value){
+				case "contains":
+					this.setState({toggledFrom:false});
+					this.props.handleDatState('useFilterFrom', false);
+					break;
+				case "from":
+					this.setState({toggledContains:false});
+					this.props.handleDatState('useFilterContains', false);
+					break;
+			}
 		} else {
 			this.setState({click:[]});
-			this.props.handleDatState('filter', []);
 			this.setState({clickAsIDs:[]});
+			this.props.handleDatState('filter', []);
 		}
-		this.setState({toggled:e.target.checked});
-		this.props.handleDatState('useFilter', e.target.checked);
+		switch(e.target.value){
+			case "contains":
+				this.setState({toggledContains:e.target.checked});
+				this.props.handleDatState('useFilterContains', e.target.checked);
+				break;
+			case "from":
+				this.setState({toggledFrom:e.target.checked});
+				this.props.handleDatState('useFilterFrom', e.target.checked);
+				break;
+		}
 	}
 	render(){
 		return(
 			<div className=" card m-2">
-				<div className="card-header d-flex justify-content-end pb-1">
-					Filter Heroes   
-					<label className="switch">
-						<input type="checkbox" onChange={this.toggleFilter.bind(this)} checked={this.state.toggled}/>
-						<span className="slider round"></span>
-					</label>
+				<div className="d-flex justify-content-around card-header d-flex p-2">
+					<span className="text-center">Filter 
+					Teams:</span> 
+					<div className="text-center">
+						Contains
+						<label className="switch">
+							<input type="checkbox" 
+								value="contains" 
+								onChange={this.toggleFilter.bind(this)} 
+								checked={this.state.toggledContains}/>
+							<span className="slider round"></span>
+						</label>
+					</div>
+					<div className="text-center">
+						Comprise
+						<label className="switch">
+							<input type="checkbox" 
+								value="from" 
+								onChange={this.toggleFilter.bind(this)} 
+								checked={this.state.toggledFrom}/>
+							<span className="slider round"></span>
+						</label>
+					</div>
 				</div>
 				<div className="hero-filter d-flex flex-wrap flex-row" hidden>
 					{this.renderHeroIcon()}

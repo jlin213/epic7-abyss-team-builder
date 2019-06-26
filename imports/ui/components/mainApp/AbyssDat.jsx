@@ -16,7 +16,8 @@ class AbyssDat extends Component{
 
 		this.state = {
 			floor: 1,
-			useFilter: false,
+			useFilterContains: false,
+			useFilterFrom: false,
 			filter: [],
 			user: "",
 			teamsPage: 0,
@@ -53,7 +54,8 @@ class AbyssDat extends Component{
 	        	<div className="w-60 h-100 pt-2 pl-3 pr-3 pb-3">
 	        		<div className="card front-page-cards">
 						<FloorDetails 
-							useFilter={this.state.useFilter}
+							useFilterContains={this.state.useFilterContains}
+							useFilterFrom={this.state.useFilterFrom}
 							floor={this.state.floor}
 							filter={this.state.filter}
 						/>

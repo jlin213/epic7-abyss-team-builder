@@ -59,6 +59,40 @@ body {
   	filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
 }
 
+.add-team-left{
+	width: 60%;
+}
+.add-team-right{
+	width: 40%;
+	img{
+		position: absolute;
+		width: 10%;
+		height: auto;
+	}
+}
+.add-team-hero1{
+	left: 85%;
+	top: 55%;
+	border-width: 2px;
+}
+.add-team-hero2{
+	left: 75%;
+	top: 62%;
+}
+.add-team-hero3{
+	left: 75%;
+	top: 49%;
+}
+.add-team-hero4{
+	left: 65%;
+	top: 55%;
+}
+.add-team-guard{
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center; 
+	opacity: .5;
+}
 .teamGrid{
   	transform: rotate(-45deg);
 	position: absolute;
@@ -71,6 +105,7 @@ body {
 	display: inline-block;
 	width: 55px;
 	height: 25px;
+	margin-bottom: 0;
 }
 /* Hide default HTML checkbox */
 .switch input {
