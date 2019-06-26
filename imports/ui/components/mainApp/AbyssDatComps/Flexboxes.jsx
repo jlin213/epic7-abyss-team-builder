@@ -70,7 +70,7 @@ class FlexBoxes extends Component{
 	}
 	render(){
 		return(
-			<div className="card m-2">
+			<div className=" card m-2">
 				<div className="card-header d-flex justify-content-end pb-1">
 					Filter Heroes   
 					<label className="switch">
@@ -78,7 +78,7 @@ class FlexBoxes extends Component{
 						<span className="slider round"></span>
 					</label>
 				</div>
-				<div className="heroes d-flex flex-wrap flex-row" hidden>
+				<div className="hero-filter d-flex flex-wrap flex-row" hidden>
 					{this.renderHeroIcon()}
 				</div>
 			</div>

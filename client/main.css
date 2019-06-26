@@ -15,7 +15,7 @@ body {
   width: 100%; }
 
 .navbar {
-  height: 7vh !important; }
+  height: 6vh !important; }
 
 .content {
   height: 94vh; }
@@ -32,8 +32,11 @@ body {
 .w-60 {
   width: 60%; }
 
-.heroes {
-  max-height: 60vh;
+.front-page-cards {
+  height: 100%; }
+
+.hero-filter {
+  height: 100%;
   overflow-y: auto;
   padding: 0; }
 
