@@ -34,24 +34,19 @@ class AddTeam extends Component{
 	}
 	handleSubmit(event) {
 		event.preventDefault();
-		console.log(this.state.hero1)
-		console.log(this.state.guardian) 
-		
 	    if(this.state.hero1 != "" && this.state.hero2 != "" && this.state.hero3 != "" && this.state.hero4 != "" && this.state.guardian!= ""){
 
     		var duplicateError = false; 
     		var scope = this; 
 
-    		Meteor.call(('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian), function(err, result){
+    		Meteor.call('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian, function(err, result){
     			if(err &&  scope.state.duplicateError == false){
     				scope.setState({duplicateError: true })
+    			}else{
+    				$('[id^="addHeroes"]').modal('hide');
     			}
     		})
        		
-
-
-    		// $('[id^="addHeroes"]').modal('hide');
-
     		this.setState({
 	    		hero1: "", 
 				hero2: "",
@@ -62,9 +57,8 @@ class AddTeam extends Component{
 				url3: "",
 				url4: "",
 				guardian: "",
-    		}, function(){
-    			console.log(this.state.duplicateError)
-    		})
+				duplicateError: false,
+    		}) 
 	    	   
 	    };
 	}
@@ -91,7 +85,7 @@ class AddTeam extends Component{
 		let text; 
 
 		if(duplicateError){
-			text = <h2> This team already exists. Duplicate team is not allowed. </h2>
+			text = <h6 className= "text-danger"> This team already exists. Duplicate team is not allowed. </h6>
 		}
 		return(
 		<div className="m-2">
@@ -114,9 +108,6 @@ class AddTeam extends Component{
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-						</div>
-						<div>
-							{text} 
 						</div>
 						<form onSubmit={this.handleSubmit}>
 							<div className="modal-body" id = "hero-select">
@@ -199,7 +190,11 @@ class AddTeam extends Component{
 							</div>
 							<div className="ml-2 mr-2"><p>
 							</p></div>
+
 							<div className="modal-footer">
+								<div>
+									{text} 
+								</div>
 								<button className="btn btn-primary" type="submit" value="Submit" onSubmit= {this.onSubmit}>Submit</button>
 							</div>
 
