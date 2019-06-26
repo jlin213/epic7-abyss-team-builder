@@ -8,7 +8,7 @@ class FloorDetails extends Component{
 		super(props);
 
 		this.state = {	
-
+			teamsPage: this.props.teamsPage,
 		}
 	}
 
@@ -16,7 +16,7 @@ class FloorDetails extends Component{
 		return this.props.abyss.map((teams) => {
 			return ( 
 				<li className="list-group-item" key={teams._id}>
-					{teams.team.slot1 + " " + teams.team.slot2  + " " + teams.team.slot3  + " " + teams.team.slot4}
+					{teams.team.slot1 + " " + teams.team.slot2  + " " + teams.team.slot3  + " " + 	teams.team.slot4}
 				</li>
 			);
 		})
@@ -52,8 +52,23 @@ class FloorDetails extends Component{
 }
 export default withTracker((props) => {
 	Meteor.subscribe('abyss.all');
-	console.log()
-	return {
-		abyss: abyssDB.find({ 'team.level': props.floor }).fetch(),
-	}	
+
+	if (props.useFilter){
+		return {
+			abyss: abyssDB.find({ 
+				$and : [
+					{ 'team.level': props.floor },
+					{ 'team.slot1': { $in: props.filter } },
+					{ 'team.slot2': { $in: props.filter } },
+					{ 'team.slot3': { $in: props.filter } },
+					{ 'team.slot4': { $in: props.filter } }
+				]
+			}).fetch(),
+		}	
+	} else {
+		return {
+			abyss: abyssDB.find({ 'team.level': props.floor }).fetch(),
+		}	
+	}
+
 })(FloorDetails);

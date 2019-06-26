@@ -113,7 +113,6 @@ class AddTeam extends Component{
 									</div>
 									<select id="1" 
 										className="custom-select" 
-										defaultValue="" 
 										value = {this.state.hero1}
 										onChange={this.handleChange}
 										required>
@@ -129,7 +128,6 @@ class AddTeam extends Component{
 									</div>
 										<select id= "2" 
 											className="custom-select" 
-											defaultValue="" 
 											value = {this.state.hero2}
 											onChange={this.handleChange}
 											required>
@@ -143,7 +141,6 @@ class AddTeam extends Component{
 									</div>
 										<select id="3" 
 											className="custom-select" 
-											defaultValue="" 
 											value = {this.state.hero3}
 											onChange={this.handleChange}
 											required>
@@ -158,7 +155,6 @@ class AddTeam extends Component{
 									</div>
 										<select id="4" 
 											className="custom-select" 
-											defaultValue="" 
 											value = {this.state.hero4}
 											onChange={this.handleChange}
 											required>
@@ -178,6 +174,7 @@ class AddTeam extends Component{
 											<option value="Arky" onChange={this.handleSelectGuardian}>Arky</option>
 											<option value="Zeaon" onChange={this.handleSelectGuardian}>Zeaon</option>
 											<option value="Kromcruz" onChange={this.handleSelectGuardian}>Kromcruz</option>
+											<option value="Giraffe" disabled>Giraffe</option>
 									</select>
 								</div>
 							</div>

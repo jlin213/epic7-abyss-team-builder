@@ -19,6 +19,7 @@ class AbyssDat extends Component{
 			useFilter: false,
 			filter: [],
 			user: "",
+			teamsPage: 0,
 		}
 	}
 
@@ -41,14 +42,14 @@ class AbyssDat extends Component{
 
 		return (
 			<div className="d-flex w-100 h-100">
-				<div className="w-40 h-100 pl-3 pt-3 pb-3">
+				<div className="w-40 h-100 pl-3 pt-2 pb-3">
 			        <div className="card front-page-cards">
 				        <LevelSelect handleDatState={this.handleDatState.bind(this)}/>
 			        	<Flexboxes handleDatState={this.handleDatState.bind(this)}/>
 			        	{$addTeamSpot}
 			        </div>
 	        	</div>
-	        	<div className="w-60 h-100 p-3">
+	        	<div className="w-60 h-100 pt-2 pl-3 pr-3 pb-3">
 	        		<div className="card front-page-cards">
 						<FloorDetails 
 							useFilter={this.state.useFilter}
