@@ -91,7 +91,7 @@ class FlexBoxes extends Component{
 	render(){
 		return(
 			<div className=" card m-2">
-				<div className="card-header d-flex p-2">
+				<div className="d-flex justify-content-around card-header d-flex p-2">
 					<span className="text-center">Filter 
 					Teams:</span> 
 					<div className="text-center">
