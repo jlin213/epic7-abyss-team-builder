@@ -15,8 +15,19 @@ class FloorDetails extends Component{
 	renderTeams(){		
 		return this.props.abyss.map((teams) => {
 			return ( 
-				<li className="list-group-item" key={teams._id}>
-					{teams.team.slot1 + " " + teams.team.slot2  + " " + teams.team.slot3  + " " + 	teams.team.slot4}
+				<li className="view-team-wrap" key={teams._id}>
+					<div className="view-team-guard team-guard" 
+						style={{backgroundImage: "url(img/"+ teams.team.guardian + ".png)"}}></div>
+					<div className="team-heroes view-team-heroes">
+						<img src={'http://assets.epicsevendb.com/hero/' + teams.team.slot1 + '/icon.png'} 
+							className="view-team-hero1 "/>
+						<img src={'http://assets.epicsevendb.com/hero/' + teams.team.slot2 + '/icon.png'} 
+							className="view-team-hero2 "/>
+						<img src={'http://assets.epicsevendb.com/hero/' + teams.team.slot3 + '/icon.png'} 
+							className="view-team-hero3 "/>
+						<img src={'http://assets.epicsevendb.com/hero/' + teams.team.slot4 + '/icon.png'} 
+							className="view-team-hero4 "/>					
+					</div>
 				</li>
 			);
 		})

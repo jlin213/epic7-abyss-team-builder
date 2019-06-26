@@ -94,7 +94,7 @@ class AddTeam extends Component{
 					Add Team
 				</button>
 				<div id="addHeroes"	className="modal fade data-keyboard data-backdrop" role='dialog'>
-					<div className="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div className="modal-dialog modal-dialog-centered " role="document">
 						<div className="modal-content">
 							<div className="modal-header">
 								<h5 className="modal-title" id="exampleModalLabel">
@@ -108,7 +108,7 @@ class AddTeam extends Component{
 								</button>
 							</div>
 							<form onSubmit={this.handleSubmit}>
-								<div className="d-flex flex-row pl-3 pr-3">
+								<div className="d-flex flex-row pl-3 pr-3 h-100">
 									<div className=".add-team-left">
 										<div className="modal-body" id="hero-select">
 											<div className="input-group mb-2">
@@ -181,20 +181,16 @@ class AddTeam extends Component{
 											</div>
 										</div>
 									</div>
-
-
-
 									<div className="add-team-right border mt-3 mb-3">
-										<div className="add-team-guard h-100 w-100" 
+										<div className="add-team-guard team-guard h-100 w-100" 
 											style={{backgroundImage: "url(img/"+ this.state.guardian + ".png)"}}></div>
-										<img src={this.state.url1} className="add-team-hero1 add-team-img border border-info rounded"/>
-										<img src={this.state.url2} className="add-team-hero2 add-team-img border rounded"/>
-										<img src={this.state.url3} className="add-team-hero3 add-team-img border rounded"/>
-										<img src={this.state.url4} className="add-team-hero4 add-team-img border rounded"/>
+										<div className="team-heroes add-team-heroes">	
+											<img src={this.state.url1} className="add-team-hero1 "/>
+											<img src={this.state.url2} className="add-team-hero2 "/>
+											<img src={this.state.url3} className="add-team-hero3 "/>
+											<img src={this.state.url4} className="add-team-hero4 "/>
+										</div>
 									</div>
-
-
-
 								</div>
 								<div className="modal-footer">
 									<div>

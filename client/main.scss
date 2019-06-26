@@ -60,42 +60,94 @@ body {
 }
 
 .add-team-left{
-	width: 60%;
+	width: 100%;
+	height: 100%;
 }
 .add-team-right{
+	position: relative;
 	width: 40%;
-	img{
-		position: absolute;
-		width: 10%;
-		height: auto;
-	}
+	// height: 100%;
 }
-.add-team-hero1{
-	left: 85%;
-	top: 55%;
-	border-width: 2px;
+.view-team-wrap{
+	position: relative;
+	height: 25vh;
 }
-.add-team-hero2{
-	left: 75%;
-	top: 62%;
-}
-.add-team-hero3{
-	left: 75%;
-	top: 49%;
-}
-.add-team-hero4{
-	left: 65%;
-	top: 55%;
-}
-.add-team-guard{
+.team-guard{
+	height: 100%;
+	z-index: 0;
+	position: absolute;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center; 
+}
+.add-team-guard{
+	width: 100%;
+	opacity: .4;
+}
+.view-team-guard{
+	top:0;
+	width: 40%;
 	opacity: .5;
 }
-.teamGrid{
-  	transform: rotate(-45deg);
+.team-heroes{
+	height: 100%;
+	width: 100%;
+	z-index: 1;
 	position: absolute;
+	img{
+		background-color: white;
+		position: absolute;
+		border:3px solid black;
+		border-radius: 50%;
+		z-index: 10;
+	}
+}
+.add-team-heroes{
+	img{
+		width: 30%;
+		height: auto;
+	}	
+}
+.view-team-heroes{
+	img{
+		height: 40%;
+		width: auto;
+	}
+}
+
+.add-team-hero1{
+	border-color: gold !important;
+	top: 40%;
+	left: 65%;
+}
+.add-team-hero2{
+	top: 20%;
+	left: 40%;
+}
+.add-team-hero3{
+	top: 55%;
+	left: 40%;
+}
+.add-team-hero4{
+	top: 40%;
+	left: 15%;
+}
+
+.view-team-hero1{
+	border-color: gold !important;
+	top: 27%;
+	left: 28%;
+}
+.view-team-hero2{
+	left:15%;
+}
+.view-team-hero3{
+	top:42%;
+	left:15%;
+}
+.view-team-hero4{
+	top: 27%;
+	left: 2%;
 }
 
 /* The switch - the box around the slider */
