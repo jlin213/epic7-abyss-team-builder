@@ -38,6 +38,7 @@ class AbyssDat extends Component{
 		let $addTeamSpot=( <div className="card-footer alert alert-warning mb-0" role="alert"> 
 				Please log in or create an account to add teams or comments.</div> );
 		if( this.state.user != "" ){
+
 			$addTeamSpot=( <div className="card-footer text-muted"><AddTeam floor={this.state.floor}/></div> );
 		} 
 

@@ -16,27 +16,30 @@ Meteor.methods ({
 		});
 	},
 	'abyss.team.add'(floornum, hero1, hero2, hero3, hero4, guardian) {
+		try {
+			abyssDB.update( 
+				{team: {}}, 
+				{
+					$setOnInsert: 	{
+						team: {
+							level: floornum,
+							slot1: hero1, 
+							slot2: hero2, 
+							slot3: hero3, 
+							slot4: hero4, 
+							guardian: guardian,
+			            	upvotes:[],
+			            	downvotes:[],
+			            	score: 0, 
+					}
 
-		abyssDB.update( 
-			{team: {}}, 
-			{
-				$setOnInsert: 	{
-					team: {
-					level: floornum,
-					slot1: hero1, 
-					slot2: hero2, 
-					slot3: hero3, 
-					slot4: hero4, 
-					guardian: guardian,
-	            	upvotes:[],
-	            	downvotes:[],
-	            	score: 0, 
+					}
 				}
-
-				}
-			}
-			,{upsert: true}
-		);
+				,{upsert: true}
+			)
+		}catch(e){
+			throw new Meteor.Error("duplicate-error");
+		}
 		abyssDB.rawCollection().createIndex({
 			"team.slot1" : 1,
 			"team.slot2" : 1,
