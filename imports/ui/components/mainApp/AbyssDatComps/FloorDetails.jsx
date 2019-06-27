@@ -24,6 +24,16 @@ class FloorDetails extends Component{
 		}
 	}
 	renderTeams(){	
+		if (this.props.abyss.length == 0){
+			return(	<div className="container alert alert-warning empty p-7 text-center">
+					<p>There doesn't seem to be a team for this floor yet. </p>
+					<p>Why not get things started by adding one?</p>
+					<hr/>
+					<p className="font-weight-light">You will need to be logged in to add a team.</p>
+				</div>
+			);
+		}
+
 		return this.props.abyss.slice(this.props.teamsPageIndex, this.props.teamsPageIndex +3 ).map((teams) => {
 			return ( 
 				<div className="view-team-wrap border view-slots d-flex flex-row" key={teams._id}>
@@ -56,20 +66,20 @@ class FloorDetails extends Component{
 	}
 	render(){
 		return (
-			<div id="" className="h-100">
-				<div className="h-100">
-					<button type="button" 
-						onClick={this.prevPageTeams.bind(this)}
-						className="text-muted view-page-nav btn btn-outline-secondary btn-block text-center bg-light">
-						<i className="fas fa-angle-double-up"></i> 
-					</button>
-					{this.renderTeams()}
-					<button type="button" 
-						onClick={this.nextPageTeams.bind(this)}
-						className="text-muted view-page-nav btn btn-outline-secondary btn-block text-center bg-light">
-						<i className="fas fa-angle-double-down"></i>
-					</button>
-				</div>
+			<div className="h-100">
+				<button type="button" 
+					onClick={this.prevPageTeams.bind(this)}
+					className="text-muted view-page-nav btn btn-outline-secondary 
+								btn-block text-center bg-light">
+					<i className="fas fa-angle-double-up"></i> 
+				</button>
+				{this.renderTeams()}
+				<button type="button" 
+					onClick={this.nextPageTeams.bind(this)}
+					className="text-muted view-page-nav view-page-nav-down btn 
+								btn-outline-secondary btn-block text-center bg-light">
+					<i className="fas fa-angle-double-down"></i>
+				</button>
 			</div>
 		)
 	}
@@ -88,7 +98,7 @@ export default withTracker((props) => {
 					{ 'team.slot3': { $in: props.filter } },
 					{ 'team.slot4': { $in: props.filter } }
 				]
-			}).fetch(),
+			}, {sort: {'team.score': -1} }	).fetch(),
 		}	
 	} else if(props.useFilterContains){
 		return {
@@ -102,7 +112,7 @@ export default withTracker((props) => {
 						{ 'team.slot4': { $in: props.filter } }
 					]}
 				]
-			}).fetch(),
+			}, {sort: {'team.score': -1} }	).fetch(),
 		}	
 	} else {
 		return {

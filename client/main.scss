@@ -65,6 +65,10 @@ body {
 	height: 5% !important;
 	padding: 0 !important;
 }
+.view-page-nav-down{
+	position: absolute;
+	bottom: 0;
+}
 .view-slots{
 	background-color: rgba(55,35,35,1);
 }
@@ -182,7 +186,9 @@ body {
 	border-radius: 5px;
 	background-color: rgba(220,220,220,.4) !important;
 }
-
+.empty{
+	margin-top: 40%; 
+}
 
 /* The switch - the box around the slider */
 .switch {
