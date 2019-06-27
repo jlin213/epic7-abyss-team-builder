@@ -3,19 +3,30 @@ import { FlowRouter } 					from 'meteor/ostrio:flow-router-extra';
 import { withTracker } 					from 'meteor/react-meteor-data';
 import { abyssDB } 						from "../../../../api/abyss/abyssDB.jsx";
 
+import VoteBox						from './VoteBox.jsx';
+
 class FloorDetails extends Component{
 	constructor(props){
 		super(props);
 
 		this.state = {	
-			teamsPage: this.props.teamsPage,
+
 		}
 	}
-
-	renderTeams(){		
-		return this.props.abyss.map((teams) => {
+	nextPageTeams(e){
+		if (this.props.teamsPageIndex +2 < this.props.abyss.length){
+			this.props.handleDatState('teamsPageIndex', this.props.teamsPageIndex +3);
+		}
+	}
+	prevPageTeams(e){
+		if (this.props.teamsPageIndex != 0 ){
+			this.props.handleDatState('teamsPageIndex', this.props.teamsPageIndex -3);
+		}
+	}
+	renderTeams(){	
+		return this.props.abyss.slice(this.props.teamsPageIndex, this.props.teamsPageIndex +3 ).map((teams) => {
 			return ( 
-				<li className="view-team-wrap" key={teams._id}>
+				<div className="view-team-wrap border view-slots d-flex flex-row" key={teams._id}>
 					<div className="view-team-guard team-guard" 
 						style={{backgroundImage: "url(img/"+ teams.team.guardian + ".png)"}}></div>
 					<div className="team-heroes view-team-heroes">
@@ -26,29 +37,38 @@ class FloorDetails extends Component{
 						<img src={'http://assets.epicsevendb.com/hero/' + teams.team.slot3 + '/icon.png'} 
 							className="view-team-hero3 "/>
 						<img src={'http://assets.epicsevendb.com/hero/' + teams.team.slot4 + '/icon.png'} 
-							className="view-team-hero4 "/>					
+							className="view-team-hero4 "/>
 					</div>
-				</li>
+					<div className="team-spacer h-100" />
+					<VoteBox upvotes={teams.team.upvotes} 
+						downvotes={teams.team.downvotes} 
+						score={teams.team.score}
+						teamID={teams._id}
+						upped={teams.team.upvotes.includes(Session.get("client"))}
+						downed={teams.team.downvotes.includes(Session.get("client"))} />
+					<div className="flex-grow-1 d-flex flex-row p-4 ml-2">
+						<div className="card comments border">
+						</div>
+					</div>
+				</div>
 			);
 		})
-		console.log(this.props.abyss[0]);
 	}
 	render(){
 		return (
-			<div id="" className="m-2">
-				<div className="card">
-					<div className="card-header">
-						Teams:
-					</div>
-					<ul className="list-group list-group-flush">
-						<li className="list-group-item text-center text-muted"> <i className="fas fa-chevron-up"></i> </li>
-						{this.renderTeams()}
-						<li className="list-group-item text-center text-muted"> <i className="fas fa-chevron-down"></i> </li>
-					</ul>
-
-
-					
-					<div></div>
+			<div id="" className="h-100">
+				<div className="h-100">
+					<button type="button" 
+						onClick={this.prevPageTeams.bind(this)}
+						className="text-muted view-page-nav btn btn-outline-secondary btn-block text-center bg-light">
+						<i className="fas fa-angle-double-up"></i> 
+					</button>
+					{this.renderTeams()}
+					<button type="button" 
+						onClick={this.nextPageTeams.bind(this)}
+						className="text-muted view-page-nav btn btn-outline-secondary btn-block text-center bg-light">
+						<i className="fas fa-angle-double-down"></i>
+					</button>
 				</div>
 			</div>
 		)
@@ -57,11 +77,12 @@ class FloorDetails extends Component{
 export default withTracker((props) => {
 	Meteor.subscribe('abyss.all');
 
+	let floorNum = parseInt(props.floor);
 	if (props.useFilterFrom){
 		return {
 			abyss: abyssDB.find({ 
 				$and : [
-					{ 'team.level': props.floor },
+					{ 'team.level': floorNum },
 					{ 'team.slot1': { $in: props.filter } },
 					{ 'team.slot2': { $in: props.filter } },
 					{ 'team.slot3': { $in: props.filter } },
@@ -73,7 +94,7 @@ export default withTracker((props) => {
 		return {
 			abyss: abyssDB.find({ 
 				$and : [
-					{ 'team.level': props.floor },
+					{ 'team.level': floorNum },
 					{ $or : [ 
 						{ 'team.slot1': { $in: props.filter } },
 						{ 'team.slot2': { $in: props.filter } },
@@ -85,7 +106,7 @@ export default withTracker((props) => {
 		}	
 	} else {
 		return {
-			abyss: abyssDB.find({ 'team.level': props.floor }).fetch(),
+			abyss: abyssDB.find({ 'team.level': floorNum }, {sort: {'team.score': -1} }	).fetch(),
 		}	
 	}
 

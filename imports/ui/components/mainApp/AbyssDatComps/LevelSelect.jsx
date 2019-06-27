@@ -9,19 +9,12 @@ class LevelSelect extends Component{
 		this.state = {
 		}
 	}
-	componentDidMount(){
-		if ((parseInt(FlowRouter.getParam('floorNum')) ) && ( this.state.floor == "" )){
-			this.setState({ floor: parseInt(FlowRouter.getParam('floorNum')) });
-			console.log(this.state.floor)
-			console.log(parseInt(FlowRouter.getParam('floorNum')))
-		}	
-	}
 	userPick(e){
 		this.props.handleDatState( 'floor' , e.target.value);
 	}
 	renderFloorSelect(){		
 		return Array(Meteor.settings.public.maxFloors).fill().map((v,i)=>i).map((num) => {
-			return <option className="" key={num} value={num +1}> Floor {num +1}</option>
+			return <option className="" key={num +1} value={num +1}> Floor {num +1}</option>
 		})
 	}
 

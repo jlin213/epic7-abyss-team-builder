@@ -39,7 +39,7 @@ class AddTeam extends Component{
     		var duplicateError = false; 
     		var scope = this; 
 
-    		Meteor.call('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian, function(err, result){
+    		Meteor.call('abyss.team.add', parseInt(this.props.floor), this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian, function(err, result){
     			if(err &&  scope.state.duplicateError == false){
     				scope.setState({duplicateError: true })
     			}else{
@@ -111,6 +111,22 @@ class AddTeam extends Component{
 								<div className="d-flex flex-row pl-3 pr-3 h-100">
 									<div className=".add-team-left">
 										<div className="modal-body" id="hero-select">
+											<div className = "input-group mb-2">
+												<div className="input-group-prepend">
+														<label className="input-group-text" htmlFor="guardian-select">Guardian:</label>
+												</div>
+												<select className="custom-select" 
+													id="guardian-select"
+													value = {this.state.guardian} 
+													onChange = {this.handleSelectGuardian}
+													required>
+													<option  value = "">Choose...</option>
+													<option value="Arky" onChange={this.handleSelectGuardian}>Arky</option>
+													<option value="Zeaon" onChange={this.handleSelectGuardian}>Zeaon</option>
+													<option value="Kromcruz" onChange={this.handleSelectGuardian}>Kromcruz</option>
+													<option value="Zebra" disabled>Zebra</option>
+												</select>
+											</div>
 											<div className="input-group mb-2">
 												<div className="input-group-prepend">
 													<label className="input-group-text" htmlFor="hero-name-1">Leader:</label>
@@ -164,21 +180,7 @@ class AddTeam extends Component{
 													{this.renderHeroNames(this.state.hero1, this.state.hero2, this.state.hero3)}
 												</select>
 											</div>
-											<div className = "input-group mb-2">
-												<div className="input-group-prepend">
-														<label className="input-group-text" htmlFor="guardian-select">Guardian:</label>
-												</div>
-												<select className="custom-select" 
-													id="guardian-select"
-													value = {this.state.guardian} 
-													onChange = {this.handleSelectGuardian}>
-													<option  value = "">Choose...</option>
-													<option value="Arky" onChange={this.handleSelectGuardian}>Arky</option>
-													<option value="Zeaon" onChange={this.handleSelectGuardian}>Zeaon</option>
-													<option value="Kromcruz" onChange={this.handleSelectGuardian}>Kromcruz</option>
-													<option value="Zebra" disabled>Zebra</option>
-												</select>
-											</div>
+
 										</div>
 									</div>
 									<div className="add-team-right border mt-3 mb-3">

@@ -32,18 +32,16 @@ body {
 .w-60 {
   width: 60%; }
 
-.front-page-cards {
-  height: 100%; }
-
 .hero-filter {
   height: 100%;
   overflow-y: auto;
   padding: 0; }
 
 .box {
+  padding: 2px;
   cursor: pointer;
   width: 12.5%;
-  height: 12.5%; }
+  height: auto; }
   .box img {
     height: 100%;
     width: 100%;
@@ -57,6 +55,13 @@ body {
   filter: grayscale(1);
   /* Microsoft Edge and Firefox 35+ */ }
 
+.view-page-nav {
+  height: 5% !important;
+  padding: 0 !important; }
+
+.view-slots {
+  background-color: #372323; }
+
 .add-team-left {
   width: 100%;
   height: 100%; }
@@ -65,9 +70,12 @@ body {
   position: relative;
   width: 40%; }
 
+.team-spacer {
+  width: 35%; }
+
 .view-team-wrap {
   position: relative;
-  height: 25vh; }
+  height: 30%; }
 
 .team-guard {
   height: 100%;
@@ -84,6 +92,7 @@ body {
 .view-team-guard {
   top: 0;
   width: 40%;
+  margin-right: 0%;
   opacity: .5; }
 
 .team-heroes {
@@ -94,50 +103,79 @@ body {
   .team-heroes img {
     background-color: white;
     position: absolute;
-    border: 3px solid black;
     border-radius: 50%;
     z-index: 10; }
 
 .add-team-heroes img {
   width: 30%;
+  border: 3px solid black;
   height: auto; }
 
-.view-team-heroes img {
-  height: 40%;
-  width: auto; }
+.view-team-heroes {
+  width: 30%; }
+  .view-team-heroes img {
+    height: 8vmin;
+    padding: px;
+    background-color: black;
+    width: auto;
+    border: 3px solid white; }
 
 .add-team-hero1 {
   border-color: gold !important;
-  top: 40%;
-  left: 65%; }
+  top: 60%;
+  left: 64%; }
 
 .add-team-hero2 {
-  top: 20%;
-  left: 40%; }
+  top: 47%;
+  left: 35%; }
 
 .add-team-hero3 {
-  top: 55%;
-  left: 40%; }
+  top: 73%;
+  left: 35%; }
 
 .add-team-hero4 {
-  top: 40%;
-  left: 15%; }
+  top: 60%;
+  left: 7%; }
 
 .view-team-hero1 {
   border-color: gold !important;
-  top: 27%;
-  left: 28%; }
+  top: 45%;
+  left: 60%; }
 
 .view-team-hero2 {
-  left: 15%; }
+  top: 25%;
+  left: 35%; }
 
 .view-team-hero3 {
-  top: 42%;
-  left: 15%; }
+  top: 63%;
+  left: 35%; }
 
 .view-team-hero4 {
-  top: 27%;
-  left: 2%; }
+  top: 45%;
+  left: 10%; }
+
+.vote-box {
+  padding-top: 4%;
+  padding-bottom: 4%;
+  width: 6%; }
+
+.score {
+  color: gold; }
+
+.vote-buttons {
+  cursor: pointer;
+  line-height: .7em; }
+  .vote-buttons i {
+    transform: scale(3, 1); }
+
+.vote-choice {
+  text-shadow: 0px 0px 10px white; }
+
+.comments {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  background-color: rgba(220, 220, 220, 0.4) !important; }
 
 /* The switch - the box around the slider */
 .switch {
