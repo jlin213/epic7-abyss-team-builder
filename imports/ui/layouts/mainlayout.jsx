@@ -4,9 +4,11 @@ import { Meteor } from 'meteor/meteor';
 export const MainLayout = ({title, loginbutton,
 						 	content}) => (
 	<main className="w-100 h-100">
-		<nav className="navbar navbar-light bg-light mb-0">
-		{loginbutton}
-			<div className="justify-content-center align-self-center m-1">
+		<nav className="d-flex navbar navbar-light bg-light mb-0">
+			{loginbutton}
+			<div className="w-25">
+			</div>
+			<div className="justify-content-end align-self-center m-1">
  				<h5>Abyss Team Builder {title}</h5>
 			</div>
 		</nav>

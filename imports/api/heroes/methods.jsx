@@ -6,22 +6,6 @@ import { HTTP } from 'meteor/http';
 
 
 Meteor.methods ({
-	// 'hero.add'( name, natStar, element){
-	// 	if (!this.userId) {	
-	// 		// throw new Meteor.Error('insert not-authorized, Please log in first.');	
-	// 	}
-	// 	check(name, String);
-	// 	check(natStar, Number);
-	// 	check(element, String);
-
-	// 	heroDB.upsert({name: name},
-	// 	{
-	// 		name: name,
-	// 		natStar: natStar,
-	// 		element: element,
-	// 	});
-	// },
-
 	'getHeroInfo' : function() {  
 		if (!this.userId) { 
 			throw new Meteor.Error('insert not-authorized, Please log in first.');   

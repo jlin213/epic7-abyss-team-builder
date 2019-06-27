@@ -39,7 +39,7 @@ class AddTeam extends Component{
     		var duplicateError = false; 
     		var scope = this; 
 
-    		Meteor.call('abyss.team.add', this.props.floor, this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian, function(err, result){
+    		Meteor.call('abyss.team.add', parseInt(this.props.floor), this.state.hero1 , this.state.hero2, this.state.hero3, this.state.hero4, this.state.guardian, function(err, result){
     			if(err &&  scope.state.duplicateError == false){
     				scope.setState({duplicateError: true })
     			}else{
@@ -94,7 +94,7 @@ class AddTeam extends Component{
 					Add Team
 				</button>
 				<div id="addHeroes"	className="modal fade data-keyboard data-backdrop" role='dialog'>
-					<div className="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div className="modal-dialog modal-dialog-centered " role="document">
 						<div className="modal-content">
 							<div className="modal-header">
 								<h5 className="modal-title" id="exampleModalLabel">
@@ -108,9 +108,25 @@ class AddTeam extends Component{
 								</button>
 							</div>
 							<form onSubmit={this.handleSubmit}>
-								<div className="d-flex flex-row pl-3 pr-3">
+								<div className="d-flex flex-row pl-3 pr-3 h-100">
 									<div className=".add-team-left">
 										<div className="modal-body" id="hero-select">
+											<div className = "input-group mb-2">
+												<div className="input-group-prepend">
+														<label className="input-group-text" htmlFor="guardian-select">Guardian:</label>
+												</div>
+												<select className="custom-select" 
+													id="guardian-select"
+													value = {this.state.guardian} 
+													onChange = {this.handleSelectGuardian}
+													required>
+													<option  value = "">Choose...</option>
+													<option value="Arky" onChange={this.handleSelectGuardian}>Arky</option>
+													<option value="Zeaon" onChange={this.handleSelectGuardian}>Zeaon</option>
+													<option value="Kromcruz" onChange={this.handleSelectGuardian}>Kromcruz</option>
+													<option value="Zebra" disabled>Zebra</option>
+												</select>
+											</div>
 											<div className="input-group mb-2">
 												<div className="input-group-prepend">
 													<label className="input-group-text" htmlFor="hero-name-1">Leader:</label>
@@ -164,37 +180,19 @@ class AddTeam extends Component{
 													{this.renderHeroNames(this.state.hero1, this.state.hero2, this.state.hero3)}
 												</select>
 											</div>
-											<div className = "input-group mb-2">
-												<div className="input-group-prepend">
-														<label className="input-group-text" htmlFor="guardian-select">Guardian:</label>
-												</div>
-												<select className="custom-select" 
-													id="guardian-select"
-													value = {this.state.guardian} 
-													onChange = {this.handleSelectGuardian}>
-													<option  value = "">Choose...</option>
-													<option value="Arky" onChange={this.handleSelectGuardian}>Arky</option>
-													<option value="Zeaon" onChange={this.handleSelectGuardian}>Zeaon</option>
-													<option value="Kromcruz" onChange={this.handleSelectGuardian}>Kromcruz</option>
-													<option value="Zebra" disabled>Zebra</option>
-												</select>
-											</div>
+
 										</div>
 									</div>
-
-
-
 									<div className="add-team-right border mt-3 mb-3">
-										<div className="add-team-guard h-100 w-100" 
+										<div className="add-team-guard team-guard h-100 w-100" 
 											style={{backgroundImage: "url(img/"+ this.state.guardian + ".png)"}}></div>
-										<img src={this.state.url1} className="add-team-hero1 add-team-img border border-info rounded"/>
-										<img src={this.state.url2} className="add-team-hero2 add-team-img border rounded"/>
-										<img src={this.state.url3} className="add-team-hero3 add-team-img border rounded"/>
-										<img src={this.state.url4} className="add-team-hero4 add-team-img border rounded"/>
+										<div className="team-heroes add-team-heroes">	
+											<img src={this.state.url1} className="add-team-hero1 "/>
+											<img src={this.state.url2} className="add-team-hero2 "/>
+											<img src={this.state.url3} className="add-team-hero3 "/>
+											<img src={this.state.url4} className="add-team-hero4 "/>
+										</div>
 									</div>
-
-
-
 								</div>
 								<div className="modal-footer">
 									<div>

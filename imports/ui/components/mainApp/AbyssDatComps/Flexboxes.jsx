@@ -47,7 +47,7 @@ class FlexBoxes extends Component{
 		const num = Array.from(Array(parseInt(this.props.heroes.length)).keys());
 		const listItems = num.map((num) => {
 			var clicked = this.state.click.includes(num) ? "" : "grayscale"; 
-			return <div className="border p-1 w-10 box" 
+			return <div className="filter-icon border w-10 box" 
 							value={num} 
 							key={num+1}  
 							onClick={this.handleClick.bind(this, num, num)}>
