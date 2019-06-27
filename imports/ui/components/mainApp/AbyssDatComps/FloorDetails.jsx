@@ -49,6 +49,7 @@ class FloorDetails extends Component{
 						<img src={'http://assets.epicsevendb.com/hero/' + teams.team.slot4 + '/icon.png'} 
 							className="view-team-hero4 "/>
 					</div>
+					<p className="team-by">team by: {teams.team.createdby}</p>
 					<div className="team-spacer h-100" />
 					<VoteBox upvotes={teams.team.upvotes} 
 						downvotes={teams.team.downvotes} 

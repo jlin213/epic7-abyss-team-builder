@@ -24,10 +24,6 @@ class AbyssDat extends Component{
 		}
 	}
 
-	componentWillMount(){
-		this.setState({user: Meteor.userId});
-	}
-
 	handleDatState(key, value){ this.setState({ [key]: value }) }
 
 	render(){
@@ -38,7 +34,7 @@ class AbyssDat extends Component{
 		})	
 		var scope = this;
 		Accounts.onLogin(function(){
-			if (scope.state.user == ""){ scope.setState({ user: Meteor.userId() }) }
+			if (scope.state.user == ""){ scope.setState({ user: Meteor.user().username }) }
 		});
 		Accounts.onLogout(function(){
 			if (scope.state.user != ""){ scope.setState({ user: "" }) }

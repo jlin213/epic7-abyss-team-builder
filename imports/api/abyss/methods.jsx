@@ -25,8 +25,8 @@ Meteor.methods ({
 				{team: {}}, 
 				{
 					$setOnInsert: 	{
-						createdby: this.userId,
 						team: {
+							createdby: Meteor.user().username,
 							level: floornum,
 							slot1: hero1, 
 							slot2: hero2, 
