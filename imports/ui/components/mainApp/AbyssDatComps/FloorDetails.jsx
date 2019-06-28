@@ -67,7 +67,8 @@ class FloorDetails extends Component{
 								slot2={teams.team.slot2}
 								slot3={teams.team.slot3}
 								slot4={teams.team.slot4}
-								date={teams.team.createdOn}/>
+								date={teams.team.createdOn}
+								floor={teams.team.level}/>
 						</div>
 					</div>
 				</div>
