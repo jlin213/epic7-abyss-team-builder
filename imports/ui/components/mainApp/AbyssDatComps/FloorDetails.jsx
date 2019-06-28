@@ -26,9 +26,10 @@ class FloorDetails extends Component{
 	}
 	renderTeams(){	
 		if (this.props.abyss.length == 0){
-			return(	<div className="container alert alert-warning empty p-7 text-center">
-					<p>There doesn't seem to be a team for this floor yet. </p>
-					<p>Why not get things started by adding one?</p>
+			return(	<div className="container alert alert-light empty p-7 text-center">
+				<h5><strong>OnO</strong></h5>
+					<p><strong>There doesn't seem to be a team for this floor yet. </strong></p>
+					<p><strong>Why not get things started by adding one?</strong></p>
 					<hr/>
 					<p className="font-weight-light">You will need to be logged in to add a team.</p>
 				</div>
@@ -60,7 +61,11 @@ class FloorDetails extends Component{
 						downed={teams.team.downvotes.includes(Session.get("client"))} />
 					<div className="comment-wrap d-flex flex-row">
 						<div className="comments border h-100">
-							<CommentBox />
+							<CommentBox team={teams._id}
+								slot1={teams.team.slot1}
+								slot2={teams.team.slot2}
+								slot3={teams.team.slot3}
+								slot4={teams.team.slot4}/>
 						</div>
 					</div>
 				</div>
@@ -104,6 +109,11 @@ export default withTracker((props) => {
 			}, {sort: {'team.score': -1} }	).fetch(),
 		}	
 	} else if(props.useFilterContains){
+		if (props.filter.length == 0){
+			return {
+				abyss: abyssDB.find({ 'team.level': floorNum }, {sort: {'team.score': -1} }	).fetch(),
+			}	
+		}
 		return {
 			abyss: abyssDB.find({ 
 				$and : [
