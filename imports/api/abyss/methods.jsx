@@ -1,21 +1,10 @@
 import { check } 								from 'meteor/check';
 import { Meteor } 								from 'meteor/meteor';
-import { abyssDB } 								from './abyssDB.jsx';
+import { abyssDB, abyssCommentsDB } 			from './abyssDB.jsx';
 
 process.env.HTTP_FORWARDED_COUNT = 1;
 
 Meteor.methods ({
-	'abyss.add'(level){
-		if (!this.userId) {	
-			throw new Meteor.Error('insert not-authorized, Please log in first.');	
-		}
-		check(level, Number);
-
-		abyssDB.insert({
-			level: level,
-			teams: {},
-		});
-	},
 	'abyss.team.add'(floornum, hero1, hero2, hero3, hero4, guardian) {
 		if (!this.userId) {	
 			throw new Meteor.Error('insert not-authorized, Please log in first.');	
@@ -27,6 +16,7 @@ Meteor.methods ({
 					$setOnInsert: 	{
 						team: {
 							createdby: Meteor.user().username,
+							createdOn: new Date(),
 							level: floornum,
 							slot1: hero1, 
 							slot2: hero2, 
@@ -97,6 +87,21 @@ Meteor.methods ({
 				} // no double voting
 				break;
 		}
+	},
+	'comment.add'(teamID, msg){
+		if (!this.userId) {	
+			throw new Meteor.Error('insert not-authorized, Please log in first.');	
+		}
+		check(msg, String);
+		abyssCommentsDB.insert({
+			createdBy: Meteor.userId(),
+			createdByUsername: Meteor.user().username,
+			dateCreated: new Date(),
+			comment: msg,
+			upvotes:[],
+			downvotes:[],
+			score: 0, 
+		})
 	},
 	'getIp'(){
 		return this.connection.clientAddress;

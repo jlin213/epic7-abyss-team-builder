@@ -213,8 +213,32 @@ body {
 	background-color: rgba(220,220,220,.2);
 	height: 20%;
 }
+.comment-modal-body{
+	min-height: 20vh;
+	max-height: 50vh;
+	overflow-y: scroll;	
+}
+.view-comment-hero{
+	width: 15%;
+	border:3px solid black;
+	border-radius: 50%;
+}
+.view-comment-hero-lead{
+	border-color: gold;
+}
+.team-comment-title{
+	position: relative;
+	.added-on{
+		position: absolute;
+		bottom: 10%;
+		right: 15%;
+	}
+}
+.point{
+	cursor: pointer;
+}
 .empty{
-	margin-top: 40%; 
+	margin-top: 25%; 
 }
 
 /* The switch - the box around the slider */

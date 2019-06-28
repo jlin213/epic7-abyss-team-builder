@@ -13,7 +13,7 @@ class LevelSelect extends Component{
 		this.props.handleDatState( 'floor' , e.target.value);
 	}
 	renderFloorSelect(){		
-		return Array(Meteor.settings.public.maxFloors).fill().map((v,i)=>i).map((num) => {
+		return Array(Meteor.settings.public.maxFloors).fill().map((v,i)=>i).reverse().map((num) => {
 			return <option className="" key={num +1} value={num +1}> Floor {num +1}</option>
 		})
 	}
@@ -26,7 +26,7 @@ class LevelSelect extends Component{
 						<div className="input-group-prepend">
 							<label className="input-group-text" htmlFor="level-selector">Show Top Teams for Abyss</label>
 						</div>
-						<select id="level-selector" className="custom-select" defaultValue="1" onChange={this.userPick.bind(this)}>
+						<select id="level-selector" className="custom-select" defaultValue={this.props.floor} onChange={this.userPick.bind(this)}>
 							<option value="" disabled>Choose Floor</option>
 							{this.renderFloorSelect()}
 						</select>

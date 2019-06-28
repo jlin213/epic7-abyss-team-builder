@@ -61,11 +61,13 @@ class FloorDetails extends Component{
 						downed={teams.team.downvotes.includes(Session.get("client"))} />
 					<div className="comment-wrap d-flex flex-row">
 						<div className="comments border h-100">
-							<CommentBox team={teams._id}
+							<CommentBox user={this.props.user}
+								team={teams._id}
 								slot1={teams.team.slot1}
 								slot2={teams.team.slot2}
 								slot3={teams.team.slot3}
-								slot4={teams.team.slot4}/>
+								slot4={teams.team.slot4}
+								date={teams.team.createdOn}/>
 						</div>
 					</div>
 				</div>

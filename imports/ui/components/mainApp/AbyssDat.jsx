@@ -15,7 +15,7 @@ class AbyssDat extends Component{
 		super(props);
 
 		this.state = {
-			floor: 1,
+			floor: Meteor.settings.public.maxFloors,
 			useFilterContains: false,
 			useFilterFrom: false,
 			filter: [],
@@ -41,7 +41,7 @@ class AbyssDat extends Component{
 		});
 
 		let $addTeamSpot=( <div className="card-footer alert alert-warning mb-0" role="alert"> 
-				Please log in or create an account to add teams or comments.</div> );
+				Please log in or create an account to add new teams or comments.</div> );
 		if( this.state.user != "" ){
 			$addTeamSpot=( <div className="card-footer text-muted"><AddTeam floor={this.state.floor}/></div> );
 		} 
@@ -49,15 +49,18 @@ class AbyssDat extends Component{
 		return (
 			<div className="d-flex w-100 h-100">
 				<div className="w-40 h-100 pl-3 pt-2 pb-3">
-			        <div className="card front-page-cards h-100">
-				        <LevelSelect handleDatState={this.handleDatState.bind(this)}/>
-			        	<Flexboxes handleDatState={this.handleDatState.bind(this)}/>
-			        	{$addTeamSpot}
-			        </div>
-	        	</div>
-	        	<div className="w-60 h-100 pt-2 pl-3 pr-3 pb-3">
-	        		<div className="card front-page-cards h-100">
+					<div className="card front-page-cards h-100">
+						<LevelSelect 
+							handleDatState={this.handleDatState.bind(this)}
+							floor={this.state.floor} />
+						<Flexboxes handleDatState={this.handleDatState.bind(this)}/>
+						{$addTeamSpot}
+					</div>
+				</div>
+				<div className="w-60 h-100 pt-2 pl-3 pr-3 pb-3">
+					<div className="card front-page-cards h-100">
 						<FloorDetails 
+							user={this.state.user}
 							useFilterContains={this.state.useFilterContains}
 							useFilterFrom={this.state.useFilterFrom}
 							floor={this.state.floor}
@@ -65,9 +68,9 @@ class AbyssDat extends Component{
 							teamsPageIndex={this.state.teamsPageIndex}
 							handleDatState={this.handleDatState.bind(this)}
 						/>
-	        		</div>
-	        	</div>
-	        </div>	
+					</div>
+				</div>
+			</div>	
 
 		)
 	}
