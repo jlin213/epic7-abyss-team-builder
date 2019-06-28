@@ -81,7 +81,7 @@ class CommentBox extends Component{
 									className="view-comment-hero "/>
 								<img src={'http://assets.epicsevendb.com/hero/' + this.props.slot4 + '/icon.png'} 
 									className="view-comment-hero "/>
-								<span className="added-on">team created: <br/> {this.props.date}</span>
+								<span className="added-on">Floor { this.props.floor } <br/>team created: <br/> {this.props.date}</span>
 								<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
