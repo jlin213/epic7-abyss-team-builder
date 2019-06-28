@@ -89,7 +89,6 @@ class FlexBoxes extends Component{
 		}
 	}
 	render(){
-		console.log(this.state.toggledFrom)
 		let $containMsg = "";
 		if (this.state.toggledFrom){
 			$containMsg = (<div className="alert alert-info m-0" role="alert"> 
