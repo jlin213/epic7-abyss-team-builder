@@ -120,7 +120,7 @@ class AddTeam extends Component{
 													value = {this.state.guardian} 
 													onChange = {this.handleSelectGuardian}
 													required>
-													<option  value = "">Choose...</option>
+													<option  value = "" disabled>Choose...</option>
 													<option value="Arky" onChange={this.handleSelectGuardian}>Arky</option>
 													<option value="Zeaon" onChange={this.handleSelectGuardian}>Zeaon</option>
 													<option value="Kromcruz" onChange={this.handleSelectGuardian}>Kromcruz</option>
@@ -136,7 +136,7 @@ class AddTeam extends Component{
 													value = {this.state.hero1}
 													onChange={this.handleChange}
 													required>
-													<option value = ""> Choose... </option>
+													<option value = "" disabled> Choose... </option>
 
 													{this.renderHeroNames(this.state.hero2, this.state.hero3, this.state.hero4)}
 												</select>
@@ -150,7 +150,7 @@ class AddTeam extends Component{
 													value = {this.state.hero2}
 													onChange={this.handleChange}
 													required>
-													<option value = ""> Choose... </option>
+													<option value = "" disabled> Choose... </option>
 													{this.renderHeroNames(this.state.hero1, this.state.hero3, this.state.hero4)}
 												</select>
 											</div>		
@@ -163,7 +163,7 @@ class AddTeam extends Component{
 													value = {this.state.hero3}
 													onChange={this.handleChange}
 													required>
-													<option value = ""> Choose... </option>
+													<option value = "" disabled> Choose... </option>
 													{this.renderHeroNames(this.state.hero1, this.state.hero2, this.state.hero4)}
 												</select>
 											</div>
@@ -176,7 +176,7 @@ class AddTeam extends Component{
 													value = {this.state.hero4}
 													onChange={this.handleChange}
 													required>
-													<option value = ""> Choose... </option>
+													<option value = "" disabled> Choose... </option>
 													{this.renderHeroNames(this.state.hero1, this.state.hero2, this.state.hero3)}
 												</select>
 											</div>
@@ -186,11 +186,19 @@ class AddTeam extends Component{
 									<div className="add-team-right border mt-3 mb-3">
 										<div className="add-team-guard team-guard h-100 w-100" 
 											style={{backgroundImage: "url(img/"+ this.state.guardian + ".png)"}}></div>
-										<div className="team-heroes add-team-heroes">	
-											<img src={this.state.url1} className="add-team-hero1 "/>
-											<img src={this.state.url2} className="add-team-hero2 "/>
-											<img src={this.state.url3} className="add-team-hero3 "/>
-											<img src={this.state.url4} className="add-team-hero4 "/>
+										<div className="team-heroes">	
+											<div className = {"add-team-heroes" + (this.state.hero1 ? "": null)}>
+												<img src={this.state.url1} className={"add-team-hero1" + (this.state.hero1 ? "": null)}/>
+											</div>
+											<div className = {"add-team-heroes" + (this.state.hero2 ? "": null)}>
+												<img src={this.state.url2} className={"add-team-hero2" + (this.state.hero2 ? "": null)}/>
+											</div>	
+											<div className = {"add-team-heroes" + (this.state.hero3 ? "": null)}>
+												<img src={this.state.url3} className={"add-team-hero3" + (this.state.hero3 ? "": null)}/>
+											</div>
+											<div className = {"add-team-heroes" + (this.state.hero4 ? "": null)}>
+												<img src={this.state.url4} className={"add-team-hero4" + (this.state.hero4 ? "": null)}/>
+											</div>	
 										</div>
 									</div>
 								</div>
