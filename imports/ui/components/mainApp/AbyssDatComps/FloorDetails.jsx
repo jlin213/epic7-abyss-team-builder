@@ -4,6 +4,7 @@ import { withTracker } 					from 'meteor/react-meteor-data';
 import { abyssDB } 						from "../../../../api/abyss/abyssDB.jsx";
 
 import VoteBox						from './VoteBox.jsx';
+import CommentBox						from './CommentBox.jsx';
 
 class FloorDetails extends Component{
 	constructor(props){
@@ -57,8 +58,9 @@ class FloorDetails extends Component{
 						teamID={teams._id}
 						upped={teams.team.upvotes.includes(Session.get("client"))}
 						downed={teams.team.downvotes.includes(Session.get("client"))} />
-					<div className="flex-grow-1 d-flex flex-row p-4 ml-2">
-						<div className="card comments border">
+					<div className="comment-wrap d-flex flex-row">
+						<div className="comments border h-100">
+							<CommentBox />
 						</div>
 					</div>
 				</div>
