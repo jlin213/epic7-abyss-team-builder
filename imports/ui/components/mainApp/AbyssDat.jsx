@@ -24,6 +24,10 @@ class AbyssDat extends Component{
 		}
 	}
 
+	componentWillMount(){
+		this.setState({user: Meteor.userId()});
+	}
+
 	handleDatState(key, value){ this.setState({ [key]: value }) }
 
 	render(){

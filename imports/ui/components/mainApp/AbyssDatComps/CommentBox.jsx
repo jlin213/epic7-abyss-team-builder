@@ -1,5 +1,6 @@
 import React, { Component } 			from 'react';
 import { withTracker } 					from 'meteor/react-meteor-data';
+import { moment } 						from 'meteor/momentjs:moment';
 
 import { abyssCommentsDB } 				from "../../../../api/abyss/abyssDB.jsx";
 
@@ -11,20 +12,47 @@ class CommentBox extends Component{
 		this.state = {	
 			teamId : this.props.team,
 			newComment: "",
+			// showCommentsModal: "" ,
 		}
 	}
 
+	// return this.props.comments.slice(this.props.teamsPageIndex, this.props.teamsPageIndex +3 ).map((teams) => {
 
 	renderComments(){
-		return null;
+		return this.props.comments.map((comment) => {
+			return (<div key={comment._id} className="comment-body alert alert-light m-0 d-flex flex-column justify-content-center">
+				Comment: {comment.comment} <br/>
+				Author: {comment.createdBy}  <br/>
+				Created:{ moment(comment.dateCreated).format("MM-DD-YYYY")}<br/>
+				Upvotes: {comment.upvotes.length} <br/>
+				Downvotes: {comment.downvotes.length} <br/>
+				Score: {comment.score}<br/>
+			</div>);
+		});
 	}
+	renderTopComment(){
+		return [this.props.comments[0]].map((comment) => {
+			return (<div key={comment._id} className="comment-body alert alert-secondary m-0 d-flex flex-column justify-content-center">
+				Comment: {comment.comment}<br/>
+				Author: {comment.createdBy}  <br/>
+				Created on: { moment(comment.dateCreated).format("MM-DD-YYYY")}<br/>
+				Upvotes: {comment.upvotes.length} <br/>
+				Downvotes: {comment.downvotes.length} <br/>
+				Score: {comment.score}<br/>
+			</div>);
+		});
+	}
+
 	addComment(e){
 		e.preventDefault();
 
 		Meteor.call('comment.add', this.props.team, this.state.newComment);
+		this.setState({ newComment: ""});
 	}
 
-	typingNewComment(e){ this.setState({ newComment: e.target.value }) }
+	toggleModal(){ this.setState({showCommentsModal: !this.state.showCommentsModal}) };	
+
+	typingNewComment(e){ this.setState({ newComment: e.target.value }) };
 
 	render(){
 		//login to add comment
@@ -39,29 +67,32 @@ class CommentBox extends Component{
 					<textarea className="form-control" 
 						rows="3" 
 						maxLength="500" 
+						value={this.state.newComment}
 						placeholder="Add comment (max 500 chars)"
 						onChange={this.typingNewComment.bind(this)}
 						required></textarea>
 					<div className="input-group-append">
-						  <button type="submit" className="btn btn-outline-primary">Submit</button>
+						  <button type="submit" className="btn btn-outline-primary" >Submit</button>
 					</div>
 				</form>
 			);
 			$loginReqFront = "";
 		} 
 
-		// // if there are no comments (comments.legnth == 0)
+		if ( this.props.comments.length==0 ){
 			$loginReqFront = (	<div className="comment-body alert alert-warning m-0 point d-flex flex-column justify-content-center"
 				data-toggle="modal" 
 				data-target="#viewMoreComs">
 				There are no comments for this team yet. Click here to add one.
 			</div>);
-
+		} else {
+			$loginReqFront = ( this.renderTopComment() )
+		}
 
 		return (
 			<div className="text-center h-100">
 				{$loginReqFront}
-				{this.renderComments}
+
 				<div className="comment-footer d-flex flex-column justify-content-center"
 					data-toggle="modal" 
 					data-target="#viewMoreComs">
@@ -87,7 +118,7 @@ class CommentBox extends Component{
 								</button>
 							</div>
 							<div className="comment-modal-body modal-body">
-
+								{this.renderComments() }
 							</div>
 							<div className="modal-footer">
 								{$loginReqForm}
@@ -100,10 +131,9 @@ class CommentBox extends Component{
 	}
 }
 export default withTracker((props) => {
-	Meteor.subscribe('abyss.all');
-
+	Meteor.subscribe('abyss.comments.teamID', props.team);
 
 	return {
-	
+		comments: abyssCommentsDB.find({ teamID:props.team }, {sort: {'team.score': -1} } ).fetch(),
 	}	
 })(CommentBox);

@@ -97,6 +97,7 @@ Meteor.methods ({
 			createdBy: Meteor.userId(),
 			createdByUsername: Meteor.user().username,
 			dateCreated: new Date(),
+			teamID: teamID,
 			comment: msg,
 			upvotes:[],
 			downvotes:[],
