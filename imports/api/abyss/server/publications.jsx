@@ -9,7 +9,7 @@ if (Meteor.isServer) {
 		return abyssDB.find();
 	});
 
-	Meteor.publish('abyss.comments.all', function() {
-		return abyssCommentsDB.find();
+	Meteor.publish('abyss.comments.teamID', function(teamID) {
+		return abyssCommentsDB.find({ teamID:teamID });
 	});
 }

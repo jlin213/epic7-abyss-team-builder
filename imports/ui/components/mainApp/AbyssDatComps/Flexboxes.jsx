@@ -8,8 +8,8 @@ class FlexBoxes extends Component{
 		this.state = {
 			click: [],
 			clickAsIDs: [],
-			toggledFrom: false,
 			toggledContains: false,
+			toggledComprise: false,
 		}; 
 		this.handleClick = this.handleClick.bind(this);
 	}
@@ -36,7 +36,7 @@ class FlexBoxes extends Component{
 				this.props.handleDatState('filter', this.state.clickAsIDs);
 			});
 		}
-		if (!this.state.toggledFrom) {
+		if (!this.state.toggledComprise) {
 			this.setState({ toggledContains: true });
 			this.props.handleDatState('useFilterContains', true);
 		}
@@ -64,8 +64,8 @@ class FlexBoxes extends Component{
 		if (e.target.checked){
 			switch(e.target.value){
 				case "contains":
-					this.setState({toggledFrom:false});
-					this.props.handleDatState('useFilterFrom', false);
+					this.setState({toggledComprise:false});
+					this.props.handleDatState('useFilterComprise', false);
 					break;
 				case "from":
 					this.setState({toggledContains:false});
@@ -83,16 +83,22 @@ class FlexBoxes extends Component{
 				this.props.handleDatState('useFilterContains', e.target.checked);
 				break;
 			case "from":
-				this.setState({toggledFrom:e.target.checked});
-				this.props.handleDatState('useFilterFrom', e.target.checked);
+				this.setState({toggledComprise:e.target.checked});
+				this.props.handleDatState('useFilterComrpise', e.target.checked);
 				break;
 		}
 	}
 	render(){
-		let $containMsg = "";
-		if (this.state.toggledFrom){
-			$containMsg = (<div className="alert alert-info m-0" role="alert"> 
-				Show teams made up of only selected heroes <span className="font-italic">(select at least 4)</span>
+		let $containsMsg = "";
+		if (this.state.toggledContains){
+			$containsMsg = (<div className="alert alert-info m-0" role="alert"> 
+				Show teams that contain selected heroes.
+			</div>)
+		}
+		let $compriseMsg = "";
+		if (this.state.toggledComprise){
+			$compriseMsg = (<div className="alert alert-info m-0" role="alert"> 
+				Show teams comprised of select heroes <span className="font-italic">(select at least 4)</span>
 			</div>)
 		}
 		if(this.state.click.length == 0 && this.state.toggledContains == true){
@@ -119,12 +125,13 @@ class FlexBoxes extends Component{
 							<input type="checkbox" 
 								value="from" 
 								onChange={this.toggleFilter.bind(this)} 
-								checked={this.state.toggledFrom}/>
+								checked={this.state.toggledComprise}/>
 							<span className="slider round"></span>
 						</label>
 					</div>
 				</div>
-				{$containMsg}
+				{$compriseMsg}
+				{$containsMsg}
 				<div className="hero-filter d-flex flex-wrap flex-row" hidden>
 					{this.renderHeroIcon()}
 				</div>
