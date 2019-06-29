@@ -95,6 +95,9 @@ class FlexBoxes extends Component{
 				Show teams made up of only selected heroes <span className="font-italic">(select at least 4)</span>
 			</div>)
 		}
+		if(this.state.click.length == 0 && this.state.toggledContains == true){
+			this.setState({toggledContains: false})
+		}
 		return(
 			<div className=" card m-2">
 				<div className="d-flex justify-content-around card-header d-flex p-2">

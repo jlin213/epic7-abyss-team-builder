@@ -206,7 +206,7 @@ class AddTeam extends Component{
 									<div>
 										{text} 
 									</div>
-									<button className="btn btn-primary" type="submit" value="Submit" onSubmit= {this.onSubmit}>Submit</button>
+									<button className="btn btn-primary" type="submit" value="Submit">Submit</button>
 								</div>
 							</form>
 						</div>
