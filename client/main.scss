@@ -180,14 +180,14 @@ body {
 	width: 6%;
 	// margin-left: 2%;
 }
-.score{
-	color: gold;
-}
+// .score{
+// 	color: gold;
+// }
 .vote-buttons{
 	cursor: pointer;
 	line-height: .7em;
 	i{
-		transform: scale(3,1);
+		transform: scale(2,1);
 	}
 }
 .vote-choice{
@@ -204,8 +204,16 @@ body {
 	padding: 2%;
 }
 .comment-body{
-	padding: 4%;
+	background-color: rgba(220,220,220,.6);
 	height: 80%;
+}
+.comment-text{
+	margin: 5%;
+	margin-right: 3%;
+	width: 90%;
+	height: 80%;
+	overflow: auto;
+	white-space: pre-line;
 }
 .comment-footer{
 	cursor: pointer;
@@ -218,10 +226,25 @@ body {
 	max-height: 50vh;
 	overflow-y: scroll;	
 }
+.comment-blockquote{
+	width: 100%;
+	font-size: 1em !important;
+	padding-right: 2%;
+}
+.view-comment-hero-box{
+	padding-right: 30%;
+	padding-left: 10%;
+	.close{
+		position: absolute;
+		right: 3%;
+		top: 4%;
+	}
+}
 .view-comment-hero{
-	width: 15%;
+	width: 20%;
 	border:3px solid black;
 	border-radius: 50%;
+	margin-left: 5%;
 }
 .view-comment-hero-lead{
 	border-color: gold;
@@ -230,8 +253,8 @@ body {
 	position: relative;
 	.added-on{
 		position: absolute;
-		bottom: 10%;
-		right: 15%;
+		bottom: 15%;
+		right: 5%;
 	}
 }
 .point{

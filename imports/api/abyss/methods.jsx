@@ -104,6 +104,52 @@ Meteor.methods ({
 			score: 0, 
 		})
 	},
+	// ok this is lazy copy pasta but still . . . 
+	'vote.comment'(commentID, updown){
+		let clientIPadr = this.connection.clientAddress;
+		let tempTeamUps = abyssCommentsDB.find({_id:commentID}).fetch()[0].upvotes;
+		let tempTeamDowns = abyssCommentsDB.find({_id:commentID}).fetch()[0].downvotes;
+		switch(updown){
+			case 'up':
+				if (tempTeamUps.includes(clientIPadr)){
+					abyssCommentsDB.update(commentID, {
+						$pull: { 'upvotes' : clientIPadr},
+						$inc: { 'score': -1 }
+					});
+				} else {
+					abyssCommentsDB.update(commentID, {
+						$push: { 'upvotes' : clientIPadr},
+						$inc: { 'score': 1 }
+					});
+				}
+				if (tempTeamDowns.includes(clientIPadr)){
+					abyssCommentsDB.update(commentID, {
+						$pull: { 'downvotes' : clientIPadr},
+						$inc: { 'score': 1 }
+					});
+				} // no double voting
+				break;
+			case 'down':
+				if (tempTeamDowns.includes(clientIPadr)){
+					abyssCommentsDB.update(commentID, {
+						$pull: { 'downvotes' : clientIPadr},
+						$inc: { 'score': 1 }
+					});
+				} else {
+					abyssCommentsDB.update(commentID, {
+						$push: { 'downvotes' : clientIPadr},
+						$inc: { 'score': -1 }
+					});
+				}
+				if (tempTeamUps.includes(clientIPadr)){
+					abyssCommentsDB.update(commentID, {
+						$pull: { 'upvotes' : clientIPadr},
+						$inc: { 'score': -1 }
+					});
+				} // no double voting
+				break;
+		}
+	},
 	'getIp'(){
 		return this.connection.clientAddress;
 	}
