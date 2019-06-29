@@ -17,11 +17,15 @@ class AbyssDat extends Component{
 		this.state = {
 			floor: Meteor.settings.public.maxFloors,
 			useFilterContains: false,
-			useFilterFrom: false,
+			useFilterComprise: false,
 			filter: [],
 			user: "",
 			teamsPageIndex: 0,
 		}
+	}
+
+	componentWillMount(){
+		this.setState({user: Meteor.userId()});
 	}
 
 	handleDatState(key, value){ this.setState({ [key]: value }) }
@@ -62,7 +66,7 @@ class AbyssDat extends Component{
 						<FloorDetails 
 							user={this.state.user}
 							useFilterContains={this.state.useFilterContains}
-							useFilterFrom={this.state.useFilterFrom}
+							useFilterComprise={this.state.useFilterComprise}
 							floor={this.state.floor}
 							filter={this.state.filter}
 							teamsPageIndex={this.state.teamsPageIndex}

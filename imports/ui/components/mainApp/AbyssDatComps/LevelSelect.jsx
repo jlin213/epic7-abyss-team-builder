@@ -24,7 +24,7 @@ class LevelSelect extends Component{
 				<div className="card">
 					<div className="input-group">
 						<div className="input-group-prepend">
-							<label className="input-group-text" htmlFor="level-selector">Show Top Teams for Abyss</label>
+							<label className="input-group-text" htmlFor="level-selector">Show Teams for Abyss</label>
 						</div>
 						<select id="level-selector" className="custom-select" defaultValue={this.props.floor} onChange={this.userPick.bind(this)}>
 							<option value="" disabled>Choose Floor</option>

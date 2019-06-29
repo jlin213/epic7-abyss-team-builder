@@ -68,7 +68,12 @@ class FloorDetails extends Component{
 								slot3={teams.team.slot3}
 								slot4={teams.team.slot4}
 								date={teams.team.createdOn}
-								floor={teams.team.level}/>
+								floor={teams.team.level}
+								up={teams.team.upvotes.length}
+								score={teams.team.score}
+								down={teams.team.downvotes.length}/>
+							{/* in retrospect I could have just passed in the whole  
+								thing or brought the component to the parent*/}
 						</div>
 					</div>
 				</div>
@@ -99,7 +104,7 @@ export default withTracker((props) => {
 	Meteor.subscribe('abyss.all');
 
 	let floorNum = parseInt(props.floor);
-	if (props.useFilterFrom){
+	if (props.useFilterComprise){
 		return {
 			abyss: abyssDB.find({ 
 				$and : [
