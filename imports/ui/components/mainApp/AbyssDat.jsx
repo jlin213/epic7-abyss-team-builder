@@ -38,10 +38,10 @@ class AbyssDat extends Component{
 		})	
 		var scope = this;
 		Accounts.onLogin(function(){
-			if (scope.state.user == ""){ scope.setState({ user: Meteor.user().username }) }
+			if (scope.state.user == null){ scope.setState({ user: Meteor.user().username }) }
 		});
 		Accounts.onLogout(function(){
-			if (scope.state.user != ""){ scope.setState({ user: "" }) }
+			if (scope.state.user != null){ scope.setState({ user: null }) }
 		});
 
 		let $addTeamSpot=( <div className="card-footer alert alert-warning mb-0" role="alert"> 
