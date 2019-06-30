@@ -44,8 +44,6 @@ class AbyssDat extends Component{
 			if (scope.state.user != ""){ scope.setState({ user: "" }) }
 		});
 
-		console.log(this.state.user)
-
 		let $addTeamSpot=( <div className="card-footer alert alert-warning mb-0" role="alert"> 
 				Please log in or create an account to add new teams or comments.</div> );
 		if( this.state.user != null ){
