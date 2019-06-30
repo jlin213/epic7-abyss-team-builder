@@ -75,7 +75,7 @@ class CommentBox extends Component{
 		let $loginReqForm = ( <div className="comment-body alert alert-warning mb-0 d-flex flex-column justify-content-center" role="alert"> 
 			Please log in or create an account to add new teams or comments.</div> );
 		
-		if( this.props.user != "" ){
+		if( this.props.user != null ){
 			$loginReqForm = (
 				<form className="input-group" onSubmit={this.addComment.bind(this)}>
 					<textarea className="form-control" 

@@ -17,7 +17,7 @@ export const MainLayout = ({title, loginbutton,
 		</div>
 		<footer className="footer text-center m-2 p-2">
 			<p>Footer Content</p>
-			<p className="text-muted"> Copyright <i class="far fa-copyright"></i> 2019 - { moment( Date() ).format("YYYY") }</p>
+			<p className="text-muted"> Copyright <i className="far fa-copyright"></i> 2019 - { moment( Date() ).format("YYYY") }</p>
 		</footer>
      </main>
 );
