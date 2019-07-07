@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 
 export const MainLayout = ({title, loginbutton,
-						 	content}) => (
+						 	content, footer}) => (
 	<main className="w-100 h-100">
 		<nav className="d-flex navbar navbar-light bg-light mb-0">
 			{loginbutton}
@@ -16,7 +16,7 @@ export const MainLayout = ({title, loginbutton,
 			{content}
 		</div>
 		<footer className="footer text-center m-2 p-2">
-			<p>Footer Content</p>
+			{footer}
 			<p className="text-muted"> Copyright <i className="far fa-copyright"></i> 2019 - { moment( Date() ).format("YYYY") }</p>
 		</footer>
      </main>

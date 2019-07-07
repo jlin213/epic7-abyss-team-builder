@@ -20,12 +20,22 @@ FlowRouter.route("/admin", {
 
 // /home
 import AbyssDat 						from '../../ui/components/mainApp/AbyssDat.jsx';
+import Footer 							from '../../ui/components/mainApp/AbyssDatComps/Footer.jsx'
 FlowRouter.route('/', {
 // do some action for this route
 action: function(params) {
 		mount(MainLayout, {
 			loginbutton: <AccountsUIWrapper />,
 		  	content: <AbyssDat />,
+		  	footer: <Footer />
 		});
 	}
 });
+
+// FlowRouter.route( '/wyung.com', {
+// 	action: function (params){
+// 		window.location = 'https://wyung.com'
+// 	}
+
+
+// })

@@ -12,4 +12,12 @@ if (Meteor.isServer) {
 	Meteor.publish('abyss.comments.teamID', function(teamID) {
 		return abyssCommentsDB.find({ teamID:teamID });
 	});
+
+	Meteor.publish('userCount', function() {
+		return Meteor.users.find({});
+	});
+
+	Meteor.publish('abyss.commentsCount', function(){
+		return abyssCommentsDB.find({});
+	});
 }
